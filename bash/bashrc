@@ -1,0 +1,67 @@
+#####################################################################
+#	~/.bashrc	终端shell配置文件 for Mac OS X
+#
+#				每次打开一个新的shell都会被读取
+#				~/.bash_profile仅在用户登录时被读取,故往往配置
+#				~/.bash_profile读取~/.bashrc文件,而个人配置均存放在
+#				bashrc文件中。
+#
+#	Author	: 	SeanXP	
+#	Email 	:	iSeanXP@gmail.com
+#	Date	:	2015/5/10
+#####################################################################
+
+###########################		alias
+alias ls='ls -G' 			# BSD Unix, [-G] - Enable colorized output.
+#alias ls='ls --color=tty' 	# linux
+alias ll='ls -l'
+alias grep='grep --color'
+alias egrep='egrep --color'
+alias fgrep='fgrep --color'
+alias vi='vim'
+
+###########################		prompt
+#eg: PS1="\[ \e[0,32,40mhelloworld\]"
+#'\e'声明了转义序列的开始,'['开始定义颜色,后面的'0'定义了默认字体宽度
+#接着中间的数字定义字符颜色,后面的数字定义字符背景,'m'是定义本身所必须的
+#'m'其后跟自己要显示的字符
+export PS1="\e[32;40m\u@\h:\w \$ \e[0m"
+
+###########################		terminal shell color set
+#设置是否进行颜色显示
+export CLICOLOR=1
+
+#配置各种文件类型的颜色
+#每两个字母为一组，表示前景颜色和背景颜色
+#共有11组颜色设置，分别为
+#directory											|	ex
+#symbolic link										|	fx	
+#socket												|	ax
+#pipe												|	dx
+#executable											|	cx
+#block special										|	eg
+#character special									|	ed		
+#executable with setuid bit set						|	ab
+#executable with setgid bit set						|	ag
+#directory writable to others, with sticky bit		|	ac
+#directory writable to others, without sticky bit	|	ad
+
+# color 1: executable -> green  
+#export LSCOLORS=exfxaxdxcxegedabagacad
+
+# color 2: executable -> red
+export LSCOLORS=gxfxcxdxbxegedabagacad
+
+# color
+# a->[black][黑色]		b->[red][红色]		c->[green][绿色] 
+# d->[brown][棕色]		e->[blue][蓝色]		f->[magenta][品红]	
+# g->[cyan][青色]		h->[gray][浅灰]	
+# A,B,C,D,E,F,G,H [对应颜色的粗体]
+# x->[系统默认颜色]
+
+#----------------------------------------------------	source path
+# Python 
+source /Users/gxp/Code/Nao-Robot/python/set_python_path.sh
+
+# /usr/local/bin/ctags 要在/usr/bin/ctags之前.
+export PATH=/usr/local/bin:$PATH
