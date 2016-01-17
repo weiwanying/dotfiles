@@ -380,8 +380,19 @@ map <C-l> <C-W>l
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Always show the status line
 set laststatus=2
+" turn off status line
+"set laststatus=0
 
 " Format the status line
+" %{HasPaste()}
+" %F, 缓冲区的文件完整路径; %t, 文件名(无路径)
+" %m, 如果缓冲区已修改则表示为[+]
+" %r, 如果缓冲区为只读则表示为[RO]
+" %h, 如果为帮助缓冲区显示为[Help]
+" %w, 如果为预览窗口则显示为[Preview]
+" %{getcwd()}
+" %l, 行号
+" %p, 文件中所在行的百分比
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 
 " 状态行颜色
