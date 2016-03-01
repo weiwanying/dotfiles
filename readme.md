@@ -1,4 +1,4 @@
-My Dotfiles
+My configuration dotfiles
 ====
 
-My configuration files.
+

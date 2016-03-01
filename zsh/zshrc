@@ -5,9 +5,9 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-# 配置zsh主题
+#
 #ZSH_THEME="robbyrussell"	# Macbook zsh
-ZSH_THEME="blinks" 		# Linux zsh 
+ZSH_THEME="blinks" 		    # Linux zsh 
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -47,7 +47,7 @@ ZSH_THEME="blinks" 		# Linux zsh
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-# 插件管理
+#
 # git, git插件;
 # sudo, 命令行按[ESC][ESC], 自动添加sudo;
 # colored-man, 彩色man页面;
@@ -65,6 +65,7 @@ export LANG=en_US.UTF-8
 # else
 #   export EDITOR='mvim'
 # fi
+export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -81,15 +82,4 @@ export LANG=en_US.UTF-8
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# 在命令行直接输入 python 文件，会用 vim 中打开，以下类似
 alias vi=vim      
-#alias py=vi      
-#alias js=vi
-#alias c=vi
-#alias java=vi
-#alias txt=vi
-
-#alias gz='tar -xzvf'
-#alias tgz='tar -xzvf'
-#alias zip='unzip'
-#alias bz2='tar -xjvf'
