@@ -619,19 +619,19 @@ autocmd BufNewFile * 			normal G
 
 ""定义各自的函数SetTitle_xx() ,自动插入文件头 
 func SetTitle_sh() 
-	call setline(1,           "\#################################################################")
-	call append(line("."),    "\#   Copyright (C) ".strftime("%Y")." Sean Guo. All rights reserved.")
-	call append(line(".")+1,  "\#														  ")
-	call append(line(".")+2,  "\#	> File Name:        < ".expand("%:t")." >") 
-	call append(line(".")+3,  "\#	> Author:           < Sean Guo >		") 
-	call append(line(".")+4,  "\#	> Mail:             < iseanxp+code@gmail.com >		") 
-	call append(line(".")+5,  "\#	> Created Time:     < ".strftime("%Y/%m/%d")." >") 
-	call append(line(".")+6,  "\#	> Last Changed: ")
-	call append(line(".")+7,  "\#	> Description:")
-	call append(line(".")+8,  "\#################################################################")
-	call append(line(".")+9,  "") 
-	call append(line(".")+10, "\#!/bin/bash") 
-	call append(line(".")+11, "")
+	call setline(1,           "\#!/bin/bash")
+	call append(line("."),    "\#################################################################")
+	call append(line(".")+1,  "\#   Copyright (C) ".strftime("%Y")." Sean Guo. All rights reserved.")
+	call append(line(".")+2,  "\#														  ")
+	call append(line(".")+3,  "\#	> File Name:        < ".expand("%:t")." >") 
+	call append(line(".")+4,  "\#	> Author:           < Sean Guo >		") 
+	call append(line(".")+5,  "\#	> Mail:             < iseanxp+code@gmail.com >		") 
+	call append(line(".")+6,  "\#	> Created Time:     < ".strftime("%Y/%m/%d")." >") 
+	call append(line(".")+7,  "\#	> Last Changed: ")
+	call append(line(".")+8,  "\#	> Description:")
+	call append(line(".")+9,  "\#################################################################")
+	call append(line(".")+10, "") 
+	call append(line(".")+11, "") 
 endfunc 
 "	expand参数
 "	----------------------------
