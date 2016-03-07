@@ -1,5 +1,47 @@
+################################################################
+#
+# 	Copyright (C) 2016 Sean Guo. All rights reserved.
+#
+#     > File Name:         < .zshrc>
+#     > Author:            < Sean Guo >
+#     > Mail:              < iseanxp+code@gmail.com >
+#     > Created Time:      
+#     > Last Changed:      < 2016/03/07 >
+#     > Description:	   zshrc
+#     
+#    #####                       #     # ######     #######  #####  #     # 
+#   #     # ######   ##   #    #  #   #  #     #         #  #     # #     # 
+#   #       #       #  #  ##   #   # #   #     #        #   #       #     # 
+#    #####  #####  #    # # #  #    #    ######        #     #####  ####### 
+#         # #      ###### #  # #   # #   #            #           # #     # 
+#   #     # #      #    # #   ##  #   #  #           #      #     # #     # 
+#    #####  ###### #    # #    # #     # #          #######  #####  #     # 
+#                                                                           
+#	 ______________________________________
+#	/ This is the personal .zshrc file for \
+#	\ SeanXP.                              /
+# 	--------------------------------------
+#	        \   ^__^
+#	         \  (oo)\_______
+#	            (__)\       )\/\
+#	                ||----w |
+#	                ||     ||
+#	
+# Reference: https://github.com/robbyrussell/oh-my-zsh
+#
+################################################################
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+
+if [ `uname` = "Darwin" ];then
+    ZSH_THEME="robbyrussell"	# Macbook zsh
+    ### Macbook alias - md5
+    alias md5='md5 -r'
+    alias md5sum='md5 -r'	# ('md5 -r' in Mac) = ('md5sum' in Linux)
+else
+    ZSH_THEME="blinks"          # Linux zsh 
+fi
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -7,7 +49,7 @@ export ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 #
 #ZSH_THEME="robbyrussell"	# Macbook zsh
-ZSH_THEME="blinks" 		    # Linux zsh 
+#ZSH_THEME="blinks" 	    # Linux zsh 
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"

@@ -1,3 +1,4 @@
+#!/bin/bash
 #################################################################
 #   Copyright (C) 2016 Sean Guo. All rights reserved.
 #														  
@@ -5,13 +6,12 @@
 #	> Author:           < Sean Guo >		
 #	> Mail:             < iseanxp+code@gmail.com >		
 #	> Created Time:     < 2016/03/01 >
-#	> Last Changed: 
+#	> Last Changed:     < 2016/03/07 >
 #	> Description:
 #################################################################
 
-#!/bin/bash
 dotfile="zshrc"
-target="/home/`whoami`/.$dotfile"
+target="$HOME/.$dotfile"
 
 if [ -f "$target" ];then
   # backuo old config file

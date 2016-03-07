@@ -11,7 +11,7 @@
 
 #!/bin/bash
 dotfile="tmux.conf"
-target="/home/`whoami`/.$dotfile"
+target="$HOME/.$dotfile"
 
 if [ -f "$target" ];then
   # backuo old config file

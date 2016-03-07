@@ -11,4 +11,4 @@
 #################################################################
 
 #!/bin/bash
-aria2c --conf-path="/Users/xxx/.aria2/aria2.conf" -D
+aria2c --conf-path="$HOME/.aria2/aria2.conf" -D
