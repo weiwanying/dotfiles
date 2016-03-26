@@ -146,9 +146,10 @@ set ignorecase
 " When searching try to be smart about cases 
 set smartcase
 " Highlight search results
-"set hlsearch
+" use: 'noh' to hide highlight
+set hlsearch
 " don't Highlight
-set nohlsearch
+"set nohlsearch
 " Makes search act like search in modern browsers
 " 在搜索时，输入的词句的逐字符高亮（类似firefox的搜索）
 set incsearch 
