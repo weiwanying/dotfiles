@@ -60,8 +60,3 @@ export LSCOLORS=gxfxcxdxbxegedabagacad
 # x->[系统默认颜色]
 
 #----------------------------------------------------	source path
-# Python 
-source /Users/gxp/Code/Nao-Robot/python/set_python_path.sh
-
-# /usr/local/bin/ctags 要在/usr/bin/ctags之前.
-export PATH=/usr/local/bin:$PATH

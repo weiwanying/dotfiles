@@ -660,7 +660,12 @@ func SetTitle_c()
 	if &filetype == 'cpp'
 	call append(line(".")+11, "#include <iostream>")
 	call append(line(".")+12, "using namespace std;")
-	call append(line(".")+13, "")
+	call append(line(".")+13, "int main()")
+	call append(line(".")+14, "{")
+	call append(line(".")+15, "")
+	call append(line(".")+16 ,"    return 0;")
+	call append(line(".")+17, "}")
+	call append(line(".")+18, "")
 	endif
 
 	if &filetype == 'c'

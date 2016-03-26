@@ -8,7 +8,10 @@
 #	> Last Changed: 
 #	> Description:		以RPC方式启动aria2
 #						Aria2 WebUI: http://ziahamza.github.io/webui-aria2/
+#           JSON-RPC Path: 
+#                 默认: http://localhost:6800/jsonrpc
+#                 --rpc-secret:   http://token:xxxxxx@host:port/jsonrpc
 #################################################################
 
 #!/bin/bash
-aria2c --conf-path="/Users/xxx/.aria2/aria2.conf" -D
+aria2c --conf-path="$HOME/.aria2/aria2.conf" -D
