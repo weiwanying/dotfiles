@@ -4,7 +4,7 @@
 #	> File Name:        < ln-link.sh >
 #	> Author:           < Sean Guo >		
 #	> Mail:             < iseanxp+code@gmail.com >		
-#	> Created Time:     < 2016/03/01 >
+#	> Created Time:     < 2016/03/26 >
 #	> Last Changed: 
 #	> Description:
 #################################################################
@@ -12,6 +12,7 @@
 #!/bin/bash
 dotfile="init.lua"
 target="$HOME/.hammerspoon/$dotfile"
+mkdir -p "$HOME/.hammerspoon/"
 
 if [ -f "$target" ];then
   # backuo old config file
