@@ -11,13 +11,24 @@
 
 #!/bin/bash
 dotfile="init.lua"
-target="$HOME/.hammerspoon/$dotfile"
-mkdir -p "$HOME/.hammerspoon/"
+base_dir="$HOME/.hammerspoon"
+target="$base_dir/$dotfile"
 
+modules_dir="$base_dir/modules"
+modules_files="`ls -1 modules`"
+
+rm -r $modules_dir
+mkdir -p $base_dir $modules_dir
+
+# backuo old config file
 if [ -f "$target" ];then
-  # backuo old config file
   mv "$target" "$target".old
 fi
 
 # make soft link
 ln -s `pwd`/$dotfile "$target"
+
+for lua in $modules_files
+do
+  ln -sf "`pwd`/modules/$lua" $modules_dir
+done
