@@ -7,12 +7,16 @@
 #	> Mail:             < iseanxp+code@gmail.com >		
 #	> Created Time:     < 2016/03/28 >
 #	> Last Changed: 
-#	> Description:      install vim plugin
+#	> Description:      install vim plugin - vundle                                                        
+#                     Vundle is short for Vim bundle and is a Vim plugin manager.
 #################################################################
 
 vim_dir=$HOME/.vim
 mkdir -p $vim_dir/bundle
 
-# ctrlp.vim
-# https://github.com/ctrlpvim/ctrlp.vim
-git clone https://github.com/ctrlpvim/ctrlp.vim.git $vim_dir/bundle/ctrlp.vim
+# vundle.vim
+# https://github.com/VundleVim/Vundle.vim
+git clone https://github.com/VundleVim/Vundle.vim.git $vim_dir/bundle/Vundle.vim
+
+# install all plugin by vundle.vim
+vim +PluginInstall +qall

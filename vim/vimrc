@@ -472,18 +472,35 @@ map <leader>s? z=
 
 " {{{ Vim plugin
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim plugin - ctrlp.vim
-" https://github.com/ctrlpvim/ctrlp.vim
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-" Change the default mapping and the default command to invoke CtrlP
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-" set CtrlP local working directory variable
-"       'r' - the nearest ancestor that contains one of these directories or files: .git .hg .svn
-let g:ctrlp_working_path_mode = 'ra'
-" Exclude files or directories using Vim's wildignore
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " Linux/MacOSX
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+" vim plugin - vundle.vim
+"https://github.com/VundleVim/Vundle.vim
+filetype off " vundle required
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+
+" -------------------- vundle plugin begin -----------------
+call vundle#begin()
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" plugin on GitHub repo
+" file management in vim
+Plugin 'ctrlpvim/ctrlp.vim'
+" git in vim
+Plugin 'tpope/vim-fugitive'
+" vim status bar
+Plugin 'vim-airline/vim-airline'
+" explore filesystem and open files and directories.
+Plugin 'scrooloose/nerdtree'
+
+
+" -------------------- vundle plugin end -----------------
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+map <C-n> :NERDTreeToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
