@@ -13,7 +13,6 @@ local hyperShift = {'ctrl', 'cmd', 'shift'}
 hs.window.animationDuration = 0
 
 ------------- Window Management --------------- {{{
--- r t d f g c v
 ---- hyper d for left one half window
 hs.hotkey.bind(hyper, 'd', function() hs.window.focusedWindow():moveToUnit(hs.layout.left50) end)
 --hs.hotkey.bind(hyper, 'd', function()
