@@ -470,7 +470,24 @@ map <leader>sa zg
 map <leader>s? z=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
-" {{{ Misc
+" {{{ Vim plugin
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim plugin - ctrlp.vim
+" https://github.com/ctrlpvim/ctrlp.vim
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+" Change the default mapping and the default command to invoke CtrlP
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+" set CtrlP local working directory variable
+"       'r' - the nearest ancestor that contains one of these directories or files: .git .hg .svn
+let g:ctrlp_working_path_mode = 'ra'
+" Exclude files or directories using Vim's wildignore
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " Linux/MacOSX
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+
+" {{{ Misc 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "set ttyfast
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
