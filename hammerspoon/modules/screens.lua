@@ -10,6 +10,7 @@ local mouse = require "hs.mouse"
 
 local hyper = {'ctrl', 'cmd'}
 local hyperShift = {'ctrl', 'cmd', 'shift'}
+local key = 'u';
 
 ------------- Multiple Screen Focus Switch --------------- {{{
 
@@ -44,7 +45,7 @@ local function focusScreen(sc, moveMouse)
 end
 
 --Bring focus to next display/screen
-hotkey.bind(hyper, "`", function ()
+hotkey.bind(hyper, key, function ()
     local focused = window.focusedWindow()
     if not focused then return end
     local sc = focused:screen()
@@ -53,7 +54,7 @@ hotkey.bind(hyper, "`", function ()
 end)
 
 --Bring focus to previous display/screen
-hotkey.bind(hyperShift, "`", function()
+hotkey.bind(hyperShift, key, function()
     local focused = window.focusedWindow()
     if not focused then return end
     local sc = focused:screen()

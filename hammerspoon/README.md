@@ -41,5 +41,5 @@
 
 | Key | Description |
 |-----|-------------|
-| `hyper`+ `\`` | Move to next display |
-| `hyperShift`+ `\`` | Move to previous display |
+| `hyper`+ `u` | Move to next display |
+| `hyperShift`+ `u` | Move to previous display |
