@@ -1,4 +1,4 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " 	Copyright (C) 2016 Sean Guo. All rights reserved.
 "
@@ -470,6 +470,11 @@ map <leader>sa zg
 map <leader>s? z=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
+" {{{ Misc 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"set ttyfast
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+
 " {{{ Vim plugin
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -491,8 +496,20 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 " vim status bar
 Plugin 'vim-airline/vim-airline'
-" explore filesystem and open files and directories.
+" Markdown in vim, The tabular plugin must come before vim-markdown.
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+" Syntax checking hacks for vim
+Plugin 'scrooloose/syntastic'
+" The NERD Commenter
+Plugin 'scrooloose/nerdcommenter'
+" The NERD Tree, explore filesystem and open files and directories.
 Plugin 'scrooloose/nerdtree'
+" Awesome autocompletion and static analysis library for python.
+"Plugin 'davidhalter/jedi'
+" YouCompleteMe, a code-completion engine for Vim
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'SirVer/ultisnips'
 
 
 " -------------------- vundle plugin end -----------------
@@ -502,11 +519,18 @@ filetype plugin indent on    " required
 
 map <C-n> :NERDTreeToggle<CR>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+" disable the folding configuration for plasticboy/vim-markdown
+let g:vim_markdown_folding_disabled = 1
 
-" {{{ Misc 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set ttyfast
+" scrooloose/syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
 " {{{ cscope setting
@@ -544,7 +568,7 @@ nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 "}}}
 
-" {{{ AutoGroups
+" {{{ AutoGroups - language-specific settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " create language-specific settings for certain filetypes/file extensions.
 " wrapped in an augroup as this ensures the autocmd's are only applied once.
