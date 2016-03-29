@@ -32,7 +32,7 @@
 " {{{ General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
-set history=200
+set history=1000
 
 " 关闭vi兼容模式
 set nocompatible
@@ -160,7 +160,7 @@ set whichwrap+=<,>,h,l
 
 "{{{ wildignore - Ignore compiled files
 set wildignore+=*.swp
-set wildignore+=*.o,*.pyc,*.luac,*.class,*.bak,*.jar,*.so
+set wildignore+=*.o,*.obj,*~,*.pyc,*.luac,*.class,*.bak,*.jar,*.so
 set wildignore+=*.gif,*.png,*.jpg,*.bmp
 set wildignore+=*.zip,*.tar.*
 " The has() function tests the presence of Vim features. more info ":help feature-list"
@@ -170,7 +170,7 @@ if has("win32") || has("win64")
     set wildignore+=*.exe
 elseif has("mac") || has("unix")
     set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
-    set wildignore+=*/.DS_Store
+    set wildignore+=*DS_Store*
 endif
 "}}}
 " {{{ Search
@@ -275,9 +275,9 @@ set fileformats=unix
 " {{{ Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
-"set nobackup
-"set nowb           " writebackup
-"set noswapfile
+set nobackup
+set nowritebackup
+set noswapfile
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
 " {{{ Text, tab and indent related
@@ -302,7 +302,7 @@ set linebreak
 set textwidth=500
 
 "Auto indent
-"set autoindent
+set autoindent
 "Smart indent
 set smartindent
 " 使用C样式的缩进
@@ -314,7 +314,7 @@ set smartindent
 " 不要打断一长行
 set nowrap
 " 自定义折行
-"set linebreak
+set linebreak
 " 由breakat选项中的字符("^I!@*-+_;:,./?")来确定折行位置
 "set breakat-=_
 " 设置showbreak选项，来显示折行指示信息
