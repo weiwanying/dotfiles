@@ -1,13 +1,12 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " 	Copyright (C) 2016 Sean Guo. All rights reserved.
 "
 "     > File Name:         < .vimrc >
 "     > Author:            < Sean Guo >
 "     > Mail:              < iseanxp+code@gmail.com >
-"     > Created Time:      
-"     > Last Changed:      < 2016/01/17 >
-"     > Description:	   vimrc	
+"     > Last Changed:      < 2016/03/29 >
+"     > Description:	   vimrc for gxp
 "
 "    #####                       #     # ######     #     # ### #     #
 "   #     # ######   ##   #    #  #   #  #     #    #     #  #  ##   ##
@@ -25,12 +24,11 @@
 "	         \  (oo)\_______
 "	            (__)\       )\/\
 "	                ||----w |
-"	                ||     ||
-"	
-" Reference: http://amix.dk/vim/vimrc.html
+"                   ||     ||
+"   Reference: http://amix.dk/vim/vimrc.html
 "
-" Vimrc Rule: Don't put any lines in your vimrc that you don't understand.
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"   Vimrc Rule: Don't put any lines in your vimrc that you don't understand.
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " {{{ General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
@@ -54,355 +52,41 @@ set autoread
 " :W sudo saves the file
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
+
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
-" {{{ Leader Shortcuts
-" With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
+" {{{ Leader Shortcuts & Key Mapping
+
+inoremap jk <esc>
+
+" With a map leader it's possible to do extra key combinations like <leader>w saves the current file
 let mapleader = ","
 let g:mapleader = ","
 
 " Fast saving
-nnoremap <leader>w :w!<cr>
-" toggle number
+nnoremap <leader>w :w!<CR>
+" Fast save and quit
+nnoremap <leader>W :wq<CR>
+" Fast quit without saving
+nnoremap <leader>q :q!<CR>
+" Toggle number
 nnoremap <leader>1 :set number!<CR>
+" Disable highlight
+nnoremap <silent> <leader>2 :nohlsearch<CR>
+nnoremap <leader>$ :call DeleteTrailingWS()<CR>
+" Toggle paste mode on and off
+nnoremap <leader>pp :setlocal paste!<CR>
 
-" Remove the Windows ^M - when the encodings gets messed up
-"noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+" Remove the Windows '^M' - when the encodings gets messed up
+noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Quickly open a buffer for scribble
-"map <leader>q :e ~/buffer<cr>
-
+map <leader>b :e ./buffer<cr>
 " Quickly open a markdown buffer for scribble
 "map <leader>x :e ~/buffer.md<cr>
 
-" Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
-
-" jk is escape
-inoremap jk <esc>
-" }}}
-
-" {{{ VIM user interface
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" show line numbers
-set number
-
-" show command in bottom bar
-"set showcmd 
-
-" highlight current line
-"set nocursorline
-
-" Set 7 lines to the cursor - when moving vertically using j/k
-"set so=7
-
-" Avoid garbled characters in Chinese language windows OS
-let $LANG='en'
-set langmenu=en
-source $VIMRUNTIME/delmenu.vim
-source $VIMRUNTIME/menu.vim
-
-" Turn on the WiLd menu
-" 增强模式中的命令行自动完成操作
-set wildmenu
-
-" Ignore compiled files
-set wildignore=*.o,*~,*.pyc
-if has("win16") || has("win32")
-    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
-else
-    set wildignore+=.git\*,.hg\*,.svn\*
-endif
-
-" Always show current position
-" 在状态行上显示光标所在位置的行号和列号
-set ruler
-set rulerformat=%20(%2*%<%f%=\ %m%r\ %3l\ %c\ %p%%%)
-
-" Height of the command bar
-" 命令行（在状态行下）的高度，默认为1，这里是2
-set cmdheight=1
-
-" A buffer becomes hidden when it is abandoned
-set hid
-
-" Configure backspace so it acts as it should act
-set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
-" 使回格键（backspace）正常处理indent, eol, start等
-"set backspace=2
-
-" 影响iTerm 2的鼠标选择
-" In many terminal emulators the mouse works just fine, thus enable it.
-"if has('mouse')
-"  set mouse=a
-"endif
-
-" {{{ Search
-" Ignore case when searching
-" 在搜索的时候忽略大小写
-set ignorecase
-" When searching try to be smart about cases 
-set smartcase
-" Highlight search results
-" use: 'noh' to hide highlight
-set hlsearch
-" don't Highlight
-"set nohlsearch
-" Makes search act like search in modern browsers
-" 在搜索时，输入的词句的逐字符高亮（类似firefox的搜索）
-set incsearch 
-"}}}
-
-"{{{ fold
-" 允许折叠  
-set foldenable      
-" 手动折叠 
-set foldmethod=manual   
-" 配置代码折叠方式为marker (默认以标识'{{{'与'}}}'折叠代码)
-set fdm=marker
-" }}}
-
-" For regular expressions turn magic on
-" 正则表达式
-set magic
-
-" Don't redraw while executing macros (good performance config)
-set lazyredraw 
-
-" Show matching brackets when text indicator is over them
-" 高亮显示匹配的括号
-set showmatch 
-" How many tenths of a second to blink when matching brackets
-" 匹配括号高亮的时间（单位是十分之一秒）
-set mat=2
-"set matchtime=5
-
-" 自动格式化
-"set formatoptions=tcrqn
-" -r:按回车不会添加注释
-" -o:按o不会添加注释
-" -c:重新格式化长注释行不会添加注释
-"set formatoptions-=r	
-
-" No annoying sound on errors
-set noerrorbells
-set novisualbell
-set t_vb=
-set tm=500
-
-" Add a bit extra margin to the left
-set foldcolumn=1
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-
-" {{{ Colors and Fonts
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Enable syntax highlighting
-" $VIMRUNTIME/syntax/syntax.vim
-syntax enable 
-
-" colors,plugins,docs都是在VIMRUNTIME目录下的
-" VIM下: echo $VIMRUNTIME 查看
-try
-    colorscheme desert
-catch
-endtry
-
-set background=dark
-
-" Set extra options when running in GUI mode
-if has("gui_running")
-    set guioptions-=T
-    set guioptions-=e
-    set t_Co=256
-    set guitablabel=%M\ %t
-endif
-
-" Set utf8 as standard encoding and en_US as the standard language
-" encoding(enc) : encoding是Vim的内部使用编码,encoding的设置会影响Vim内部的Buffer、消息文字等。
-" 在Unix环境下, encoding的默认设置等于locale; 
-" Windows环境下会和当前代码页相同。在中文Windows环境下encoding的默认设置是cp936(GBK).
-set encoding=utf8
-"set encoding=prc
-
-" Use Unix as the standard file type
-set ffs=unix,dos,mac
-set fileformats=unix
-
-" fileencodings(fencs) : Vim在打开文件时会根据fileencodings选项来识别文件编码, 
-" 可以同时设置多个编码, Vim会根据设置的顺序来猜测所打开文件的编码。
-"set fileencodings=utf-8,usc-bom,euc-jp,gb18030,gbk,gb2312,cp936
-
-" fileencoding(fenc) : Vim在保存新建文件时会根据fileencoding的设置编码来保存。
-" 如果是打开已有文件, Vim会根据打开文件时所识别的编码来保存, 除非在保存时重新设置fileencoding。
-"set fenc=utf-8
-
-" termencodings(tenc) : 在终端环境下使用Vim时, 通过termencoding项来告诉Vim终端所使用的编码。
-"set termencoding=utf-8
-
-" 注释设置为亮绿色，方便查看
-"highlight Comment ctermfg=green guifg=green
-
-" 高亮字符，超过100列高亮预警
-"highlight OverLength ctermbg=red ctermfg=white guibg=red guifg=white
-"match OverLength '\%101v.*'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-
-" {{{ Files, backups and undo
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
-"set nobackup
-"set nowb           " writebackup
-"set noswapfile
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-
-" {{{ Text, tab and indent related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 禁止空格代替制表符;  Makefile中不能用空格代替制表符号, 否则出现错误.
-"set noexpandtab
-" 使用空格代替制表符;
-" Use spaces instead of tabs
-set expandtab
-" number of spaces in tab when editing
-" 按退格键退回缩进的长度, 结合expandtab使用
-set softtabstop=4
-
-" Be smart when using tabs ;)
-" 在行和段开始处使用制表符
-set smarttab
-
-" 1 tab == 4 spaces
-" 设置制表符显示为4个空格
-set tabstop=4
-" 表示每一级缩进的长度, 建议与tabstop和softtabstop相同统一
-set shiftwidth=4
-
-" Linebreak on 500 characters
-set lbr
-set tw=500
-
-"Auto indent
-set ai 
-"Smart indent
-" 为C程序提供自动缩进
-set smartindent
-" 使用C样式的缩进
-"set cindent
-
-" 自动折行––将超出屏幕范围的文本打断并显示在下一行
-" Wrap lines
-"set wrap 
-" 不要打断一长行
-set nowrap
-" 自定义折行
-"set linebreak
-" 由breakat选项中的字符("^I!@*-+_;:,./?")来确定折行位置
-"set breakat-=_
-" 设置showbreak选项，来显示折行指示信息
-"set showbreak=->
-" 关闭自定义折行
-"set nolinebreak
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-
-" {{{ Visual mode related
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Visual mode pressing * or # searches for the current selection
-" Super useful! From an idea by Michael Naumann
-"vnoremap <silent> * :call VisualSelection('f', '')<CR>
-"vnoremap <silent> # :call VisualSelection('b', '')<CR>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-
-" {{{ Moving around, tabs, windows and buffers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Treat long lines as break lines (useful when moving around in them)
-" 在折断行间进行移动，需要打开 set wrap
-map j gj
-map k gk
-
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-" 与Mac切换输入法快捷键(Ctrl-<Space>)冲突, 故禁止
-"map <c-space> ?
-
-" Disable highlight when <leader><cr> is pressed
-"map <silent> <leader><cr> :noh<cr>
-
-" Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
-" Close the current buffer
-"map <leader>bd :Bclose<cr>:tabclose<cr>gT
-
-" Close all the buffers
-"map <leader>ba :bufdo bd<cr>
-
-" Useful mappings for managing tabs
-"map <leader>tn :tabnew<cr>
-"map <leader>to :tabonly<cr>
-"map <leader>tc :tabclose<cr>
-"map <leader>tm :tabmove 
-"map <leader>t<leader> :tabnext 
-
-" Let 'tl' toggle between this and the last accessed tab
-"let g:lasttab = 1
-"nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
-"au TabLeave * let g:lasttab = tabpagenr()
-
-
-" Opens a new tab with the current buffer's path
-" Super useful when editing files in the same directory
-"map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
-
-" Switch CWD to the directory of the open buffer
-"map <leader>cd :cd %:p:h<cr>:pwd<cr>
-
-" Specify the behavior when switching between buffers 
-"try
-"  set switchbuf=useopen,usetab,newtab
-"  set stal=2
-"catch
-"endtry
-
-" Return to last edit position when opening files (You want this!)
-" autocmd BufReadPost *
-"      \ if line("'\"") > 0 && line("'\"") <= line("$") |
-"      \   exe "normal! g`\"" |
-"      \ endif
-" Remember info about open buffers on close
-" set viminfo^=%
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-
-" {{{ Status line
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Always show the status line
-set laststatus=2
-" turn off status line
-"set laststatus=0
-
-" Format the status line
-" %{HasPaste()}
-" %F, 缓冲区的文件完整路径; %t, 文件名(无路径)
-" %m, 如果缓冲区已修改则表示为[+]
-" %r, 如果缓冲区为只读则表示为[RO]
-" %h, 如果为帮助缓冲区显示为[Help]
-" %w, 如果为预览窗口则显示为[Preview]
-" %{getcwd()}
-" %l, 行号
-" %p, 文件中所在行的百分比
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
-
-" 状态行颜色
-"highlight StatusLine guifg=SlateBlue guibg=Yellow
-"highlight StatusLineNC guifg=Gray guibg=White
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-
-" {{{ Editing mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap VIM 0 to first non-blank character
 map 0 ^
 
@@ -419,44 +103,22 @@ map 0 ^
 "  vmap <D-k> <M-k>
 "endif
 
-" Delete trailing white space on save, useful for Python and CoffeeScript ;)
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
-endfunc
-autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.coffee :call DeleteTrailingWS()
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+" Moving around, tabs, windows and buffers
+" Treat long lines as break lines (useful when moving around in them)
+" 在折断行间进行移动，需要打开 set wrap
+map j gj
+map k gk
 
-" {{{ Ag searching and cope displaying
-"    requires ag.vim - it's much better than vimgrep/grep
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" When you press gv you Ag after the selected text
-"vnoremap <silent> gv :call VisualSelection('gv', '')<CR>
+" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
+"map <space> /
+" 与Mac切换输入法快捷键(Ctrl-<Space>)冲突, 故禁止
+"map <c-space> ?
 
-" Open Ag and put the cursor in the right position
-"map <leader>g :Ag 
-
-" When you press <leader>r you can search and replace the selected text
-"vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
-
-" Do :help cope if you are unsure what cope is. It's super useful!
-"
-" When you search with Ag, display your results in cope by doing:
-"   <leader>cc
-"
-" To go to the next search result do:
-"   <leader>n
-"
-" To go to the previous search results do:
-"   <leader>p
-"
-"map <leader>cc :botright cope<cr>
-"map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-"map <leader>n :cn<cr>
-"map <leader>p :cp<cr>
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
 
 " {{{ Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -470,33 +132,216 @@ map <leader>sa zg
 map <leader>s? z=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
-" {{{ Misc 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set ttyfast
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
-" {{{ Vim plugin
+" {{{ VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" show line numbers
+set number
+" highlight current line
+set nocursorline
+" Show matching brackets when text indicator is over them
+" 高亮显示匹配的括号
+set showmatch
+" How many tenths of a second to blink when matching brackets
+" 匹配括号高亮的时间（单位是十分之一秒）
+set matchtime=2
+" Set 7 lines to the cursor - when moving vertically using j/k
+"set so=7
+" A buffer becomes hidden when it is abandoned
+set hidden
+" Add a bit extra margin to the left
+set foldcolumn=1
+" Configure backspace so it acts as it should act
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+" 使回格键(backspace)正常处理indent, eol, start等
+"set backspace=2
 
-" vim plugin - vundle.vim
+"{{{ wildignore - Ignore compiled files
+set wildignore+=*.swp
+set wildignore+=*.o,*.pyc,*.luac,*.class,*.bak,*.jar,*.so
+set wildignore+=*.gif,*.png,*.jpg,*.bmp
+set wildignore+=*.zip,*.tar.*
+" The has() function tests the presence of Vim features. more info ":help feature-list"
+" There is no 'linux' feature.
+if has("win32") || has("win64")
+    set wildignore+=*\\.git\\*,*\\.hg\\*,*\\.svn\\*
+    set wildignore+=*.exe
+elseif has("mac") || has("unix")
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+    set wildignore+=*/.DS_Store
+endif
+"}}}
+" {{{ Search
+" Ignore case when searching
+" 在搜索的时候忽略大小写
+set ignorecase
+" When searching try to be smart about cases
+set smartcase
+" Highlight search results
+" use: ':noh' to hide highlight
+set hlsearch
+" don't Highlight
+"set nohlsearch
+" Makes search act like search in modern browsers
+" 在搜索时，输入的词句的逐字符高亮（类似firefox的搜索）
+set incsearch
+" For regular expressions turn magic on
+set magic
+"}}}
+"{{{ fold
+" 允许折叠
+set foldenable
+" 标记折叠, marker fold (默认以标识'{{{'与'}}}'折叠代码)
+set foldmethod=marker
+" 手动折叠, manual fold
+"set foldmethod=manual
+" }}}
+" {{{ Status line
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Height of the command bar, default is 1
+set cmdheight=1
+" show command in right bottom bar
+set showcmd
+
+" Always show the status line
+set laststatus=2
+
+" Turn on the Wild menu, allows you to use <Left> or <Righ> to navigate through the compoetion lists.
+" 增强模式中的命令行, 可以自动补全(wildmenu), 并显示多个待选命令(wildmode)
+set wildmenu
+" allows you to expand wildmenu
+set wildmode=longest:full,full
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+
+" No annoying sound on errors
+set noerrorbells
+set novisualbell
+" t_vb: visual bell
+set t_vb=
+set tm=500
+
+" Avoid garbled characters in Chinese language windows OS
+let $LANG='en'
+set langmenu=en
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+
+" {{{ Colors and Fonts
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enable syntax highlighting
+" $VIMRUNTIME/syntax/syntax.vim
+syntax enable
+
+" colors,plugins,docs都是在VIMRUNTIME目录下的
+" VIM下: echo $VIMRUNTIME 查看
+try
+    colorscheme desert
+catch
+endtry
+set background=dark
+
+" Set extra options when running in GUI mode
+if has("gui_running")
+    set guioptions-=T
+    set guioptions-=e
+    set t_Co=256
+    set guitablabel=%M\ %t
+endif
+
+" Set utf8 as standard encoding and en_US as the standard language
+" encoding(enc) : encoding是Vim的内部使用编码,encoding的设置会影响Vim内部的Buffer、消息文字等。
+" 在Unix环境下, encoding的默认设置等于locale;
+" Windows环境下会和当前代码页相同。在中文Windows环境下encoding的默认设置是cp936(GBK).
+set encoding=utf8
+"set encoding=prc
+
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
+set fileformats=unix
+
+" 注释设置为亮绿色，方便查看
+"highlight Comment ctermfg=green guifg=green
+
+" 高亮字符，超过100列高亮预警
+"highlight OverLength ctermbg=red ctermfg=white guibg=red guifg=white
+"match OverLength '\%101v.*'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+
+" {{{ Files, backups and undo
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Turn backup off, since most stuff is in SVN, git et.c anyway...
+"set nobackup
+"set nowb           " writebackup
+"set noswapfile
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+
+" {{{ Text, tab and indent related
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Be smart when using tabs ;)
+" 在行和段开始处使用制表符
+set smarttab
+" 禁止空格代替制表符;  Makefile中不能用空格代替制表符号, 否则出现错误
+"set noexpandtab
+" Use spaces instead of tabs
+set expandtab
+" number of spaces in tab when editing
+" 按退格键退回缩进的长度, 结合expandtab使用
+set softtabstop=4
+" 1 tab == 4 spaces
+" 设置制表符显示为4个空格
+set tabstop=4
+" 表示每一级缩进的长度, 建议与tabstop和softtabstop相同统一
+set shiftwidth=4
+" Linebreak on 500 characters
+set linebreak
+set textwidth=500
+
+"Auto indent
+"set autoindent
+"Smart indent
+set smartindent
+" 使用C样式的缩进
+"set cindent
+
+" 自动折行––将超出屏幕范围的文本打断并显示在下一行
+" Wrap lines
+"set wrap
+" 不要打断一长行
+set nowrap
+" 自定义折行
+"set linebreak
+" 由breakat选项中的字符("^I!@*-+_;:,./?")来确定折行位置
+"set breakat-=_
+" 设置showbreak选项，来显示折行指示信息
+"set showbreak=->
+" 关闭自定义折行
+"set nolinebreak
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+
+" {{{ Vim Plugins
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "https://github.com/VundleVim/Vundle.vim
 filetype off " vundle required
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-
+set runtimepath+=~/.vim/bundle/Vundle.vim
 " -------------------- vundle plugin begin -----------------
 call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
 " plugin on GitHub repo
-" file management in vim
-Plugin 'ctrlpvim/ctrlp.vim'
 " git in vim
 Plugin 'tpope/vim-fugitive'
 " vim status bar
 Plugin 'vim-airline/vim-airline'
-" Markdown in vim, The tabular plugin must come before vim-markdown.
+Plugin 'vim-airline/vim-airline-themes'
+" Markdown in vim (vim-markdown)
+" the tabular plugin must come before vim-markdown.
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 " Syntax checking hacks for vim
@@ -505,17 +350,29 @@ Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
 " The NERD Tree, explore filesystem and open files and directories.
 Plugin 'scrooloose/nerdtree'
+" file management in vim
+Plugin 'ctrlpvim/ctrlp.vim'
+
 " Awesome autocompletion and static analysis library for python.
 "Plugin 'davidhalter/jedi'
+
 " YouCompleteMe, a code-completion engine for Vim
 "Plugin 'Valloric/YouCompleteMe'
 "Plugin 'SirVer/ultisnips'
-
-
 " -------------------- vundle plugin end -----------------
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+" vim-airline theme setting
+let g:airline_theme = 'powerlineish'
+
+" CtrlP's setting
+let g:ctrlp_custom_ignore = {
+            \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+            \ 'file': '\v\.(exe|so|dll)$',
+            \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+            \ }
 
 map <C-n> :NERDTreeToggle<CR>
 
@@ -530,7 +387,6 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
 " {{{ cscope setting
@@ -542,22 +398,22 @@ let g:syntastic_check_on_wq = 0
 "  -q: 生成cscope.in.out和cscope.po.out文件，加快cscope的索引速度
 "
 if has("cscope")
-  if has("mac")
-    set csprg=/usr/local/bin/cscope
-  else
-    set csprg=/usr/bin/cscope
-  endif
-  set csto=1
-  set cst
-  set nocsverb
-  " add any database in current directory
-  if filereadable("cscope.out")
-      cs add cscope.out
-  endif
-  set csverb
+    if has("mac")
+        set csprg=/usr/local/bin/cscope
+    else
+        set csprg=/usr/bin/cscope
+    endif
+    set csto=1
+    set cst
+    set nocsverb
+    " add any database in current directory
+    if filereadable("cscope.out")
+        cs add cscope.out
+    endif
+    set csverb
 endif
 
-" cscope 快捷键映射, Ctrl-@ 
+" cscope 快捷键映射, Ctrl-@
 nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>
@@ -597,66 +453,28 @@ augroup configgroup
     autocmd BufEnter *.sh setlocal tabstop=2
     autocmd BufEnter *.sh setlocal shiftwidth=2
     autocmd BufEnter *.sh setlocal softtabstop=2
+
+    " 自动格式化, 需要放在最后，防止其他插件覆盖;
+    "set formatoptions=tcrqn
+    " -r:按回车不会添加注释
+    " -o:按o不会添加注释
+    " -c:重新格式化长注释行不会添加注释
+    "set formatoptions-=r
+    autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
 augroup END
+
+autocmd BufWrite *.py :call DeleteTrailingWS()
+autocmd BufWrite *.coffee :call DeleteTrailingWS()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
 " {{{ Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! CmdLine(str)
-    exe "menu Foo.Bar :" . a:str
-    emenu Foo.Bar
-    unmenu Foo
-endfunction 
-
-function! VisualSelection(direction, extra_filter) range
-    let l:saved_reg = @"
-    execute "normal! vgvy"
-
-    let l:pattern = escape(@", '\\/.*$^~[]')
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-    if a:direction == 'b'
-        execute "normal ?" . l:pattern . "^M"
-    elseif a:direction == 'gv'
-        call CmdLine("Ag \"" . l:pattern . "\" " )
-    elseif a:direction == 'replace'
-        call CmdLine("%s" . '/'. l:pattern . '/')
-    elseif a:direction == 'f'
-        execute "normal /" . l:pattern . "^M"
-    endif
-
-    let @/ = l:pattern
-    let @" = l:saved_reg
-endfunction
-
-" Returns true if paste mode is enabled
-function! HasPaste()
-    if &paste
-        return 'PASTE MODE  '
-    endif
-    return ''
-endfunction
-
-" Don't close window, when deleting a buffer
-command! Bclose call <SID>BufcloseCloseIt()
-function! <SID>BufcloseCloseIt()
-   let l:currentBufNum = bufnr("%")
-   let l:alternateBufNum = bufnr("#")
-
-   if buflisted(l:alternateBufNum)
-     buffer #
-   else
-     bnext
-   endif
-
-   if bufnr("%") == l:currentBufNum
-     new
-   endif
-
-   if buflisted(l:currentBufNum)
-     execute("bdelete! ".l:currentBufNum)
-   endif
-endfunction
+" Delete trailing white space on save, useful for Python and CoffeeScript ;)
+func! DeleteTrailingWS()
+    exe "normal mz"
+    %s/\s\+$//ge
+    exe "normal `z"
+endfunc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
 " {{{ NewFile
@@ -668,91 +486,91 @@ endfunction
 
 "新建.c, .cpp, .h, .sh, .java文件时,执行VIM的autocmd命令
 "这里使用autocmd, 实现新建文件时, 自动添加作者信息至文件头
-autocmd BufNewFile *.sh 		exec ":call SetTitle_sh()" 
-autocmd BufNewFile *.cpp,*.c 	exec ":call SetTitle_c()" 
-autocmd BufNewFile *.h 			exec ":call SetTitle_h()" 
-autocmd BufNewFile *.java 		exec ":call SetTitle_java()" 
-autocmd BufNewFile *.py 		exec ":call SetTitle_py()" 
+autocmd BufNewFile *.sh 		exec ":call SetTitle_sh()"
+autocmd BufNewFile *.cpp,*.c 	exec ":call SetTitle_c()"
+autocmd BufNewFile *.h 			exec ":call SetTitle_h()"
+autocmd BufNewFile *.java 		exec ":call SetTitle_java()"
+autocmd BufNewFile *.py 		exec ":call SetTitle_py()"
 "新建文件后，自动定位到文件末尾
 autocmd BufNewFile * 			normal G
 
-""定义各自的函数SetTitle_xx() ,自动插入文件头 
-func SetTitle_sh() 
-	call setline(1,           "\#!/bin/bash")
-	call append(line("."),    "\#################################################################")
-	call append(line(".")+1,  "\#   Copyright (C) ".strftime("%Y")." Sean Guo. All rights reserved.")
-	call append(line(".")+2,  "\#														  ")
-	call append(line(".")+3,  "\#	> File Name:        < ".expand("%:t")." >") 
-	call append(line(".")+4,  "\#	> Author:           < Sean Guo >		") 
-	call append(line(".")+5,  "\#	> Mail:             < iseanxp+code@gmail.com >		") 
-	call append(line(".")+6,  "\#	> Created Time:     < ".strftime("%Y/%m/%d")." >") 
-	call append(line(".")+7,  "\#	> Last Changed: ")
-	call append(line(".")+8,  "\#	> Description:")
-	call append(line(".")+9,  "\#################################################################")
-	call append(line(".")+10, "") 
-	call append(line(".")+11, "") 
-endfunc 
+""定义各自的函数SetTitle_xx() ,自动插入文件头
+func SetTitle_sh()
+    call setline(1,           "\#!/bin/bash")
+    call append(line("."),    "\#################################################################")
+    call append(line(".")+1,  "\#   Copyright (C) ".strftime("%Y")." Sean Guo. All rights reserved.")
+    call append(line(".")+2,  "\#														  ")
+    call append(line(".")+3,  "\#	> File Name:        < ".expand("%:t")." >")
+    call append(line(".")+4,  "\#	> Author:           < Sean Guo >		")
+    call append(line(".")+5,  "\#	> Mail:             < iseanxp+code@gmail.com >		")
+    call append(line(".")+6,  "\#	> Created Time:     < ".strftime("%Y/%m/%d")." >")
+    call append(line(".")+7,  "\#	> Last Changed: ")
+    call append(line(".")+8,  "\#	> Description:")
+    call append(line(".")+9,  "\#################################################################")
+    call append(line(".")+10, "")
+    call append(line(".")+11, "")
+endfunc
 "	expand参数
 "	----------------------------
-"	%		获取文件名		
+"	%		获取文件名
 "	%:h		获取目录
 "	%:t		获取不含路径的文件名
 "	%:r		比'%'少后缀
 "	%:e		获取后缀
 
 func SetTitle_c()
-	call setline(1,			  "\/****************************************************************")
-	call append(line("."),    "    Copyright (C) ".strftime("%Y")." Sean Guo. All rights reserved.")
-	call append(line(".")+1,  "					      									  ")
-	call append(line(".")+2,  "    > File Name:         < ".expand("%:t")." >") 
-	call append(line(".")+3,  "    > Author:            < Sean Guo >") 
-	call append(line(".")+4,  "    > Mail:              < iseanxp+code@gmail.com >") 
-	call append(line(".")+5,  "    > Created Time:      < ".strftime("%Y/%m/%d")." >") 
-	call append(line(".")+6,  "    > Last Changed: ")
-	call append(line(".")+7,  "    > Description:")
-	call append(line(".")+8,  "****************************************************************/")
-	call append(line(".")+9,  "")
-	call append(line(".")+10, "")
+    call setline(1,			  "\/****************************************************************")
+    call append(line("."),    "    Copyright (C) ".strftime("%Y")." Sean Guo. All rights reserved.")
+    call append(line(".")+1,  "					      									  ")
+    call append(line(".")+2,  "    > File Name:         < ".expand("%:t")." >")
+    call append(line(".")+3,  "    > Author:            < Sean Guo >")
+    call append(line(".")+4,  "    > Mail:              < iseanxp+code@gmail.com >")
+    call append(line(".")+5,  "    > Created Time:      < ".strftime("%Y/%m/%d")." >")
+    call append(line(".")+6,  "    > Last Changed: ")
+    call append(line(".")+7,  "    > Description:")
+    call append(line(".")+8,  "****************************************************************/")
+    call append(line(".")+9,  "")
+    call append(line(".")+10, "")
 
-	" 作者信息写完了, 接下来是根据不同的后缀(c,cpp,h)决定使用不同的模板, 从第8行开始添加.
+    " 作者信息写完了, 接下来是根据不同的后缀(c,cpp,h)决定使用不同的模板, 从第8行开始添加.
 
-	if &filetype == 'cpp'
-	call append(line(".")+11, "#include <iostream>")
-	call append(line(".")+12, "using namespace std;")
-	call append(line(".")+13, "int main()")
-	call append(line(".")+14, "{")
-	call append(line(".")+15, "")
-	call append(line(".")+16 ,"    return 0;")
-	call append(line(".")+17, "}")
-	call append(line(".")+18, "")
-	endif
+    if &filetype == 'cpp'
+        call append(line(".")+11, "#include <iostream>")
+        call append(line(".")+12, "using namespace std;")
+        call append(line(".")+13, "int main()")
+        call append(line(".")+14, "{")
+        call append(line(".")+15, "")
+        call append(line(".")+16 ,"    return 0;")
+        call append(line(".")+17, "}")
+        call append(line(".")+18, "")
+    endif
 
-	if &filetype == 'c'
-	call append(line(".")+11, "#include <stdio.h>")
-	call append(line(".")+12, "")
-	call append(line(".")+13, "int main()")
-	call append(line(".")+14, "{")
-	call append(line(".")+15, "")
-	call append(line(".")+16 ,"    return 0;")
-	call append(line(".")+17, "}")
-	call append(line(".")+18, "")
-	endif
+    if &filetype == 'c'
+        call append(line(".")+11, "#include <stdio.h>")
+        call append(line(".")+12, "")
+        call append(line(".")+13, "int main()")
+        call append(line(".")+14, "{")
+        call append(line(".")+15, "")
+        call append(line(".")+16 ,"    return 0;")
+        call append(line(".")+17, "}")
+        call append(line(".")+18, "")
+    endif
 
 endfunc
 
 func SetTitle_h()
-	call setline(1,			  "\/****************************************************************")
-	call append(line("."),    "    Copyright (C) ".strftime("%Y")." Sean Guo. All rights reserved.")
-	call append(line(".")+1,  "					      									  ")
-	call append(line(".")+2,  "    > File Name:         < ".expand("%:t")." >") 
-	call append(line(".")+3,  "    > Author:            < Sean Guo >") 
-	call append(line(".")+4,  "    > Mail:              < iseanxp+code@gmail.com >") 
-	call append(line(".")+5,  "    > Created Time:      < ".strftime("%Y/%m/%d")." >") 
-	call append(line(".")+6,  "    > Last Changed: ")
-	call append(line(".")+7,  "    > Description:")
-	call append(line(".")+8,  "****************************************************************/")
-	call append(line(".")+9,  "")
-	call append(line(".")+10, "")
+    call setline(1,			  "\/****************************************************************")
+    call append(line("."),    "    Copyright (C) ".strftime("%Y")." Sean Guo. All rights reserved.")
+    call append(line(".")+1,  "					      									  ")
+    call append(line(".")+2,  "    > File Name:         < ".expand("%:t")." >")
+    call append(line(".")+3,  "    > Author:            < Sean Guo >")
+    call append(line(".")+4,  "    > Mail:              < iseanxp+code@gmail.com >")
+    call append(line(".")+5,  "    > Created Time:      < ".strftime("%Y/%m/%d")." >")
+    call append(line(".")+6,  "    > Last Changed: ")
+    call append(line(".")+7,  "    > Description:")
+    call append(line(".")+8,  "****************************************************************/")
+    call append(line(".")+9,  "")
+    call append(line(".")+10, "")
     call append(line(".")+11, "#ifndef __".expand("%:r")."__")
     call append(line(".")+12, "#define __".expand("%:r")."__")
     call append(line(".")+13, "")
@@ -760,41 +578,41 @@ func SetTitle_h()
 endfunc
 
 func SetTitle_java()
-	call setline(1,			  "\/*-------------------------------------------------------------*")
-	call append(line("."),    "    Copyright (C) ".strftime("%Y")." Sean Guo. All rights reserved.")
-	call append(line(".")+1,  "					      									  ")
-	call append(line(".")+2,  "    > File Name:         < ".expand("%:t")." >") 
-	call append(line(".")+3,  "    > Author:            < Sean Guo >") 
-	call append(line(".")+4,  "    > Mail:              < iseanxp+code@gmail.com >") 
-	call append(line(".")+5,  "    > Created Time:      < ".strftime("%Y/%m/%d")." >") 
-	call append(line(".")+6,  "    > Last Changed: ")
-	call append(line(".")+7,  "    > Description:")
-	call append(line(".")+8,  "*--------------------------------------------------------------*/")
-	call append(line(".")+9,  "")
-	call append(line(".")+10, "")
-	call append(line(".")+11, "public class ".expand("%:r"))
-	call append(line(".")+12, "{")
-	call append(line(".")+13, "")
-	call append(line(".")+14, "    public static void main(String args[])")
-	call append(line(".")+15, "    {")
-	call append(line(".")+16, "          ")
-	call append(line(".")+17, "    }")
-	call append(line(".")+18, "}")
-endfunc 
+    call setline(1,			  "\/*-------------------------------------------------------------*")
+    call append(line("."),    "    Copyright (C) ".strftime("%Y")." Sean Guo. All rights reserved.")
+    call append(line(".")+1,  "					      									  ")
+    call append(line(".")+2,  "    > File Name:         < ".expand("%:t")." >")
+    call append(line(".")+3,  "    > Author:            < Sean Guo >")
+    call append(line(".")+4,  "    > Mail:              < iseanxp+code@gmail.com >")
+    call append(line(".")+5,  "    > Created Time:      < ".strftime("%Y/%m/%d")." >")
+    call append(line(".")+6,  "    > Last Changed: ")
+    call append(line(".")+7,  "    > Description:")
+    call append(line(".")+8,  "*--------------------------------------------------------------*/")
+    call append(line(".")+9,  "")
+    call append(line(".")+10, "")
+    call append(line(".")+11, "public class ".expand("%:r"))
+    call append(line(".")+12, "{")
+    call append(line(".")+13, "")
+    call append(line(".")+14, "    public static void main(String args[])")
+    call append(line(".")+15, "    {")
+    call append(line(".")+16, "          ")
+    call append(line(".")+17, "    }")
+    call append(line(".")+18, "}")
+endfunc
 
-func SetTitle_py() 
-	call setline(1,           "\#! /usr/bin/env python")
-	call append(line("."),    "\#-*- coding: utf-8 -*-")
-	call append(line(".")+1,  "\#################################################################")
-	call append(line(".")+2,  "\#   Copyright (C) ".strftime("%Y")." Sean Guo. All rights reserved.")
-	call append(line(".")+3,  "\#														  ")
-	call append(line(".")+4,  "\#	> File Name:        < ".expand("%:t")." >") 
-	call append(line(".")+5,  "\#	> Author:           < Sean Guo >		") 
-	call append(line(".")+6,  "\#	> Mail:             < iseanxp+code@gmail.com >		") 
-	call append(line(".")+7,  "\#	> Created Time:     < ".strftime("%Y/%m/%d")." >") 
-	call append(line(".")+8,  "\#	> Last Changed: ")
-	call append(line(".")+9,  "\#	> Description:")
-	call append(line(".")+10, "\#################################################################")
-	call append(line(".")+11, "") 
-endfunc 
+func SetTitle_py()
+    call setline(1,           "\#! /usr/bin/env python")
+    call append(line("."),    "\#-*- coding: utf-8 -*-")
+    call append(line(".")+1,  "\#################################################################")
+    call append(line(".")+2,  "\#   Copyright (C) ".strftime("%Y")." Sean Guo. All rights reserved.")
+    call append(line(".")+3,  "\#														  ")
+    call append(line(".")+4,  "\#	> File Name:        < ".expand("%:t")." >")
+    call append(line(".")+5,  "\#	> Author:           < Sean Guo >		")
+    call append(line(".")+6,  "\#	> Mail:             < iseanxp+code@gmail.com >		")
+    call append(line(".")+7,  "\#	> Created Time:     < ".strftime("%Y/%m/%d")." >")
+    call append(line(".")+8,  "\#	> Last Changed: ")
+    call append(line(".")+9,  "\#	> Description:")
+    call append(line(".")+10, "\#################################################################")
+    call append(line(".")+11, "")
+endfunc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
