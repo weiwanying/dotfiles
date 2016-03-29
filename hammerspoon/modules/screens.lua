@@ -1,6 +1,5 @@
 -- https://github.com/bezhermoso/dotfiles/tree/master/hammerspoon
 
-require "hs.application"
 local window = require "hs.window"
 local screen = require "hs.screen"
 local hotkey = require "hs.hotkey"
@@ -8,9 +7,7 @@ local fnutils = require "hs.fnutils"
 local geometry = require "hs.geometry"
 local mouse = require "hs.mouse"
 
-local hyper = {'ctrl', 'cmd'}
-local hyperShift = {'ctrl', 'cmd', 'shift'}
-local key = 'u';
+local screen_switch_key = 'u';
 
 ------------- Multiple Screen Focus Switch --------------- {{{
 
@@ -45,7 +42,7 @@ local function focusScreen(sc, moveMouse)
 end
 
 --Bring focus to next display/screen
-hotkey.bind(hyper, key, function ()
+hotkey.bind(hyper, screen_switch_key, function ()
     local focused = window.focusedWindow()
     if not focused then return end
     local sc = focused:screen()
@@ -54,7 +51,7 @@ hotkey.bind(hyper, key, function ()
 end)
 
 --Bring focus to previous display/screen
-hotkey.bind(hyperShift, key, function()
+hotkey.bind(hyperShift, screen_switch_key, function()
     local focused = window.focusedWindow()
     if not focused then return end
     local sc = focused:screen()

@@ -1,6 +1,5 @@
-------------- Set hyper to ctrl + cmd ---------------
-local hyper = {'ctrl', 'cmd'}
-local hyperShift = {'ctrl', 'cmd', 'shift'}
+local hotkey = require 'hs.hotkey'
+local application = require 'hs.application'
 
 ------------- Switch to Application ---------------{{{
 local key2App = {
@@ -18,20 +17,19 @@ local key2App = {
 }
 
 for key, app in pairs(key2App) do
-    hs.hotkey.bind(hyper, key, function() 
-        hs.application.launchOrFocus(app) 
+    hotkey.bind(hyper, key, function() 
+        application.launchOrFocus(app) 
     end)
 end
 
 -- hammerspoon console
---hs.hotkey.bind(hyper, ';', hs.openConsole)
+--hotkey.bind(hyper, ';', hs.openConsole)
 
 -- iTerm console
-hs.hotkey.bind(hyper, ';', function()
-    hs.application.launchOrFocus("iTerm")
+hotkey.bind(hyper, ';', function()
+    application.launchOrFocus("iTerm")
 end)
 
 -- reload
-hs.hotkey.bind(hyper, 'escape', function() hs.reload() end )
-
+hotkey.bind(hyper, 'escape', function() hs.reload() end )
 -- }}}

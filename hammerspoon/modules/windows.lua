@@ -3,9 +3,6 @@
 -- https://github.com/cmsj/hammerspoon-config
 
 require "hs.application"
-------------- Set hyper to ctrl + cmd ---------------
-local hyper = {'ctrl', 'cmd'}
-local hyperShift = {'ctrl', 'cmd', 'shift'}
 
 -- make window transitions much snappier
 -- The default duration for animations, in seconds. 
