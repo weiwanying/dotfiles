@@ -9,6 +9,9 @@ require "hs.application"
 -- Initial value is 0.2; set to 0 to disable animations.
 hs.window.animationDuration = 0
 
+local display_macbook = "Color LCD"
+local display_monitor = "1970W"
+
 ------------- Window Management --------------- {{{
 ---- hyper d for left one half window
 hs.hotkey.bind(hyper, 'd', function() hs.window.focusedWindow():moveToUnit(hs.layout.left50) end)
@@ -149,3 +152,36 @@ hs.hotkey.bind(hyper, 'Down', hs.grid.pushWindowDown)
 --end)
 
 -- }}}
+
+------------- Multi-window layouts --------------- {{{
+--  Format reminder:
+--      {"App name", "Window name", "Display Name", "unitrect", "framerect", "fullframerect"},
+--      hs.geometry.rect('X','Y', 'Width', 'Height')
+local iTunesMiniPlayerLayout = {"iTunes", "MiniPlayer", display_macbook, nil, nil, hs.geometry.rect(0, -48, 400, 48)}
+local internal_display = {
+    {"AppCleaner",        nil,          display_macbook, nil, nil, hs.geometry.rect(0, 500, 500, 400)},
+    {"Evernote",          nil,          display_macbook, hs.layout.left75, nil, nil},
+    {"Google Chrome",     nil,          display_macbook, hs.layout.maximized, nil, nil},
+    {"Finder",            nil,          display_macbook, nil, nil, hs.geometry.rect(0, 0, 1000, 500)},
+    {"NeteaseMusic",      nil,          display_macbook, hs.layout.left50, nil, nil},
+    {"Reeder",            nil,          display_macbook, hs.layout.left75,    nil, nil},
+    {"OmniFocus",         nil,          display_macbook, hs.layout.left50, nil, nil},
+    {"Mail",              nil,          display_macbook, hs.layout.left75, nil, nil},
+    {"1Password",         nil,          display_macbook, hs.layout.left50, nil, nil},
+    {"Calendar",          nil,          display_macbook, hs.layout.left70, nil, nil},
+    {"Dictionary",        nil,          display_macbook, nil, nil, hs.geometry.rect(540, 200, 900, 700)},
+    {"MacDown",           nil,          display_macbook, nil, nil, hs.geometry.rect(0, 400, 1440, 500)},
+    {"Messages",          nil,          display_macbook, hs.layout.right50, nil, nil},
+    {"iTunes",            "iTunes",     display_macbook, hs.layout.maximized, nil, nil},
+    {"Preview",           nil,          display_macbook, hs.layout.left75, nil, nil},
+    --{"iTerm2",            nil,          display_macbook, hs.layout.left75, nil, nil},
+    iTunesMiniPlayerLayout,
+}
+local dual_display = {
+    --{"AppCleaner",        nil,          display_monitor, hs.geometry.unitrect(0, 0.7, 0.3, 0.3), nil, nil},
+    {"iTerm2",            nil,          display_monitor, hs.geometry.unitrect(0, 0.01, 1, 0.99), nil, nil},
+}
+
+hs.hotkey.bind(hyper, '1', function() hs.layout.apply(internal_display) end)
+hs.hotkey.bind(hyper, '2', function() hs.layout.apply(dual_display) end)
+--}}}
