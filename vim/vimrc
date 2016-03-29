@@ -61,48 +61,29 @@ set lazyredraw
 
 inoremap jk <esc>
 
-" With a map leader it's possible to do extra key combinations like <leader>w saves the current file
+" With a map leader it's possible to do extra key combinations
 let mapleader = ","
 let g:mapleader = ","
 
-" Fast saving
 nnoremap <leader>w :w!<CR>
-" Fast save and quit
 nnoremap <leader>W :wq<CR>
-" Fast quit without saving
 nnoremap <leader>q :q!<CR>
-" Toggle number
 nnoremap <leader>1 :set number!<CR>
-" Disable highlight
-nnoremap <silent> <leader>2 :nohlsearch<CR>
+nnoremap <leader>2 :nohlsearch<CR>
 nnoremap <leader>$ :call DeleteTrailingWS()<CR>
-" Toggle paste mode on and off
 nnoremap <leader>pp :setlocal paste!<CR>
-
+"nnoremap <leader>a :normal @a<CR>
+nnoremap <leader>d :read !date<CR>
 " Remove the Windows '^M' - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+nnoremap <Leader>m mmHmt:%s/<C-V><CR>//ge<CR>'tzt'm
 
 " Quickly open a buffer for scribble
-map <leader>b :e ./buffer<cr>
+nnoremap <leader>b :e ./buffer<CR>
 " Quickly open a markdown buffer for scribble
-"map <leader>x :e ~/buffer.md<cr>
+"nnoremap <leader>x :e ~/buffer.md<CR>
 
 " Remap VIM 0 to first non-blank character
 map 0 ^
-
-" Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-"nmap <M-j> mz:m+<cr>`z
-"nmap <M-k> mz:m-2<cr>`z
-"vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-"vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
-"if has("mac") || has("macunix")
-"  nmap <D-j> <M-j>
-"  nmap <D-k> <M-k>
-"  vmap <D-j> <M-j>
-"  vmap <D-k> <M-k>
-"endif
-
 " Moving around, tabs, windows and buffers
 " Treat long lines as break lines (useful when moving around in them)
 " 在折断行间进行移动，需要打开 set wrap
@@ -123,7 +104,7 @@ map <C-l> <C-W>l
 " {{{ Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Pressing ,ss will toggle and untoggle spell checking
-map <leader>ss :setlocal spell!<cr>
+map <leader>ss :setlocal spell!<CR>
 
 " Shortcuts using <leader>
 map <leader>sn ]s
