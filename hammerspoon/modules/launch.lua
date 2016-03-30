@@ -12,6 +12,7 @@ local key2App = {
     o = 'OmniFocus',
     p = '1Password',
     r = 'Reeder',
+    s = 'Dash',
     z = 'Dictionary',
     w = 'MacDown'
 }

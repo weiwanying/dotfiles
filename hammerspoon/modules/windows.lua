@@ -3,21 +3,28 @@
 -- https://github.com/cmsj/hammerspoon-config
 
 require "hs.application"
+local hotkey = require 'hs.hotkey'
+local window = require 'hs.window'
+local layout = require 'hs.layout'
+local alert = require 'hs.alert'
+local hints = require 'hs.hints'
+local grid = require 'hs.grid'
+local geometry = require 'hs.geometry'
 
 -- make window transitions much snappier
 -- The default duration for animations, in seconds. 
 -- Initial value is 0.2; set to 0 to disable animations.
-hs.window.animationDuration = 0
+window.animationDuration = 0
 
 local display_macbook = "Color LCD"
 local display_monitor = "1970W"
 
 ------------- Window Management --------------- {{{
 ---- hyper d for left one half window
-hs.hotkey.bind(hyper, 'd', function() hs.window.focusedWindow():moveToUnit(hs.layout.left50) end)
---hs.hotkey.bind(hyper, 'd', function()
---    if hs.window.focusedWindow() then
---        local win = hs.window.focusedWindow()
+hotkey.bind(hyper, '[', function() window.focusedWindow():moveToUnit(layout.left50) end)
+--hotkey.bind(hyper, 'd', function()
+--    if window.focusedWindow() then
+--        local win = window.focusedWindow()
 --        local f = win:frame()
 --        local screen = win:screen()
 --        local max = screen:frame()
@@ -28,15 +35,15 @@ hs.hotkey.bind(hyper, 'd', function() hs.window.focusedWindow():moveToUnit(hs.la
 --        f.h = max.h
 --        win:setFrame(f)
 --    else
---        hs.alert.show("No active window")
+--        alert.show("No active window")
 --    end
 --end)
 
 -- hyper g for right one half window
-hs.hotkey.bind(hyper, 'g', function() hs.window.focusedWindow():moveToUnit(hs.layout.right50) end)
---hs.hotkey.bind(hyper, 'g', function()
---    if hs.window.focusedWindow() then
---        local win = hs.window.focusedWindow()
+hotkey.bind(hyper, ']', function() window.focusedWindow():moveToUnit(layout.right50) end)
+--hotkey.bind(hyper, 'g', function()
+--    if window.focusedWindow() then
+--        local win = window.focusedWindow()
 --        local f = win:frame()
 --        local screen = win:screen()
 --        local max = screen:frame()
@@ -47,15 +54,15 @@ hs.hotkey.bind(hyper, 'g', function() hs.window.focusedWindow():moveToUnit(hs.la
 --        f.h = max.h
 --        win:setFrame(f)
 --    else
---        hs.alert.show("No active window")
+--        alert.show("No active window")
 --    end
 --end)
 
 -- hyper f for fullscreen
---hs.hotkey.bind(hyper, 'f', function() hs.window.focusedWindow():toggleFullScreen() end)
-hs.hotkey.bind(hyper, 'f', function()
-    if hs.window.focusedWindow() then
-        local win = hs.window.focusedWindow()
+--hotkey.bind(hyper, 'f', function() window.focusedWindow():toggleFullScreen() end)
+hotkey.bind(hyper, 'f', function()
+    if window.focusedWindow() then
+        local win = window.focusedWindow()
         local f = win:frame()
         local screen = win:screen()
         local max = screen:frame()
@@ -66,54 +73,54 @@ hs.hotkey.bind(hyper, 'f', function()
         f.h = max.h
         win:setFrame(f)
     else
-        hs.alert.show("No active window")
+        alert.show("No active window")
     end
 end)
 
 -- Hotkeys to resize windows absolutely
-hs.hotkey.bind(hyper, '[', function() hs.window.focusedWindow():moveToUnit(hs.layout.left30) end)
-hs.hotkey.bind(hyper, ']', function() hs.window.focusedWindow():moveToUnit(hs.layout.right70) end)
+--hotkey.bind(hyper, '[', function() window.focusedWindow():moveToUnit(layout.left30) end)
+--hotkey.bind(hyper, ']', function() window.focusedWindow():moveToUnit(layout.right70) end)
 
 -- Hyper i to show window hints
-hs.hotkey.bind(hyper, '.', function() 
-    hs.hints.windowHints() 
+hotkey.bind(hyper, '.', function() 
+    hints.windowHints() 
 end)
 
 ---- Hyper hjkl to switch window focus
---hs.hotkey.bind(hyper, 'h', function() hs.window.focusedWindow():focusWindowWest() end)
---hs.hotkey.bind(hyper, 'l', function() hs.window.focusedWindow():focusWindowEast() end)
---hs.hotkey.bind(hyper, 'k', function() hs.window.focusedWindow():focusWindowNorth() end)
---hs.hotkey.bind(hyper, 'j', function() hs.window.focusedWindow():focusWindowSouth() end)
+--hotkey.bind(hyper, 'h', function() window.focusedWindow():focusWindowWest() end)
+--hotkey.bind(hyper, 'l', function() window.focusedWindow():focusWindowEast() end)
+--hotkey.bind(hyper, 'k', function() window.focusedWindow():focusWindowNorth() end)
+--hotkey.bind(hyper, 'j', function() window.focusedWindow():focusWindowSouth() end)
 --
---hs.hotkey.bind(hyper, 'k', function()
---    if hs.window.focusedWindow() then
---        hs.window.focusedWindow():focusWindowNorth()
+--hotkey.bind(hyper, 'k', function()
+--    if window.focusedWindow() then
+--        window.focusedWindow():focusWindowNorth()
 --    else
---        hs.alert.show("No active window")
+--        alert.show("No active window")
 --    end
 --end)
 --
---hs.hotkey.bind(hyper, 'j', function()
---    if hs.window.focusedWindow() then
---        hs.window.focusedWindow():focusWindowSouth()
+--hotkey.bind(hyper, 'j', function()
+--    if window.focusedWindow() then
+--        window.focusedWindow():focusWindowSouth()
 --    else
---        hs.alert.show("No active window")
+--        alert.show("No active window")
 --    end
 --end)
 --
---hs.hotkey.bind(hyper, 'l', function()
---    if hs.window.focusedWindow() then
---        hs.window.focusedWindow():focusWindowEast()
+--hotkey.bind(hyper, 'l', function()
+--    if window.focusedWindow() then
+--        window.focusedWindow():focusWindowEast()
 --    else
---        hs.alert.show("No active window")
+--        alert.show("No active window")
 --    end
 --end)
 --
---hs.hotkey.bind(hyper, 'h', function()
---    if hs.window.focusedWindow() then
---        hs.window.focusedWindow():focusWindowWest()
+--hotkey.bind(hyper, 'h', function()
+--    if window.focusedWindow() then
+--        window.focusedWindow():focusWindowWest()
 --    else
---        hs.alert.show("No active window")
+--        alert.show("No active window")
 --    end
 --end)
 
@@ -121,20 +128,20 @@ end)
 
 ------------- Multiple Monitor Management --------------- {{{
 -- Defines for window grid
---hs.grid.GRIDWIDTH = 3
---hs.grid.GRIDHEIGHT = 3
---hs.grid.MARGINX = 0
---hs.grid.MARGINY = 0
+--grid.GRIDWIDTH = 3
+--grid.GRIDHEIGHT = 3
+--grid.MARGINX = 0
+--grid.MARGINY = 0
 -- Hotkeys to interact with the window grid
-hs.hotkey.bind(hyper, ',', hs.grid.show)
-hs.hotkey.bind(hyper, 'Left', hs.grid.pushWindowLeft)
-hs.hotkey.bind(hyper, 'Right', hs.grid.pushWindowRight)
-hs.hotkey.bind(hyper, 'Up', hs.grid.pushWindowUp)
-hs.hotkey.bind(hyper, 'Down', hs.grid.pushWindowDown)
+hotkey.bind(hyper, ',', grid.show)
+hotkey.bind(hyper, 'Left', grid.pushWindowLeft)
+hotkey.bind(hyper, 'Right', grid.pushWindowRight)
+hotkey.bind(hyper, 'Up', grid.pushWindowUp)
+hotkey.bind(hyper, 'Down', grid.pushWindowDown)
 
 ---- hyper + left move the current window to the left monitor
---hs.hotkey.bind(hyper, 'left', function() 
---    local w = hs.window.focusedWindow()
+--hotkey.bind(hyper, 'left', function() 
+--    local w = window.focusedWindow()
 --    if not w then 
 --        return
 --    end
@@ -145,8 +152,8 @@ hs.hotkey.bind(hyper, 'Down', hs.grid.pushWindowDown)
 --end)
 --
 ---- hyper + right move the current window to the right monitor
---hs.hotkey.bind(hyper, 'right', function() 
---    local w = hs.window.focusedWindow()
+--hotkey.bind(hyper, 'right', function() 
+--    local w = window.focusedWindow()
 --    if not w then 
 --        return
 --    end
@@ -161,32 +168,34 @@ hs.hotkey.bind(hyper, 'Down', hs.grid.pushWindowDown)
 ------------- Multi-window layouts --------------- {{{
 --  Format reminder:
 --      {"App name", "Window name", "Display Name", "unitrect", "framerect", "fullframerect"},
---      hs.geometry.rect('X','Y','Width','Height')
---      hs.geometry.unitrect(X%,Y%,Width%,Height%)
-local iTunesMiniPlayerLayout = {"iTunes", "MiniPlayer", display_macbook, nil, nil, hs.geometry.rect(0, -48, 400, 48)}
+--      geometry.rect('X','Y','Width','Height')
+--      geometry.unitrect(X%,Y%,Width%,Height%)
+local iTunesMiniPlayerLayout = {"iTunes", "MiniPlayer", display_macbook, nil, nil, geometry.rect(0, -48, 400, 48)}
 local internal_display = {
-    {"AppCleaner",        nil,          display_macbook, hs.geometry.unitrect(0, 0.6, 0.4, 0.4), nil, nil},
-    {"Evernote",          nil,          display_macbook, hs.layout.left75, nil, nil},
-    {"Google Chrome",     nil,          display_macbook, hs.layout.maximized, nil, nil},
-    {"Finder",            nil,          display_macbook, hs.geometry.unitrect(0, 0, 0.6, 0.6), nil, nil},
-    {"NeteaseMusic",      nil,          display_macbook, hs.layout.left50, nil, nil},
-    {"Reeder",            nil,          display_macbook, hs.layout.left75,    nil, nil},
-    {"OmniFocus",         nil,          display_macbook, hs.layout.left50, nil, nil},
-    {"Mail",              nil,          display_macbook, hs.layout.left75, nil, nil},
-    {"1Password",         nil,          display_macbook, hs.layout.left50, nil, nil},
-    {"Calendar",          nil,          display_macbook, hs.layout.left70, nil, nil},
-    {"Dictionary",        nil,          display_macbook, hs.geometry.unitrect(0.4, 0.2, 0.6, 0.8), nil, nil},
-    {"MacDown",           nil,          display_macbook, hs.geometry.unitrect(0, 0.5, 1, 0.5), nil, nil},
-    {"Messages",          nil,          display_macbook, hs.layout.right50, nil, nil},
-    {"iTunes",            "iTunes",     display_macbook, hs.layout.maximized, nil, nil},
-    {"Preview",           nil,          display_macbook, hs.layout.left75, nil, nil},
+    {"AppCleaner",        nil,          display_macbook, geometry.unitrect(0, 0.6, 0.4, 0.4), nil, nil},
+    {"Evernote",          nil,          display_macbook, layout.left75, nil, nil},
+    {"Google Chrome",     nil,          display_macbook, layout.maximized, nil, nil},
+    {"Finder",            nil,          display_macbook, geometry.unitrect(0, 0, 0.6, 0.6), nil, nil},
+    {"NeteaseMusic",      nil,          display_macbook, layout.left50, nil, nil},
+    {"Reeder",            nil,          display_macbook, layout.maximized, nil, nil},
+    {"OmniFocus",         nil,          display_macbook, layout.left70, nil, nil},
+    {"Mail",              nil,          display_macbook, layout.left75, nil, nil},
+    {"1Password",         nil,          display_macbook, layout.left50, nil, nil},
+    {"Calendar",          nil,          display_macbook, layout.left70, nil, nil},
+    {"Dash",              nil,          display_macbook, layout.left70, nil, nil},
+    {"Dictionary",        nil,          display_macbook, geometry.unitrect(0.4, 0.2, 0.6, 0.8), nil, nil},
+    {"MacDown",           nil,          display_macbook, geometry.unitrect(0, 0.5, 1, 0.5), nil, nil},
+    {"Messages",          nil,          display_macbook, layout.right50, nil, nil},
+    {"iTunes",            "iTunes",     display_macbook, layout.maximized, nil, nil},
+    {"Preview",           nil,          display_macbook, layout.left75, nil, nil},
+    {"App Store",         nil,          display_macbook, layout.left75, nil, nil},
     --iTunesMiniPlayerLayout,
 }
 local dual_display = {
-    --{"AppCleaner",        nil,          display_monitor, hs.geometry.unitrect(0, 0.7, 0.3, 0.3), nil, nil},
-    {"iTerm2",            nil,          display_monitor, hs.geometry.unitrect(0, 0.03, 1, 0.97), nil, nil},
+    --{"AppCleaner",        nil,          display_monitor, geometry.unitrect(0, 0.7, 0.3, 0.3), nil, nil},
+    {"iTerm2",            nil,          display_monitor, geometry.unitrect(0, 0.03, 1, 0.97), nil, nil},
 }
 
-hs.hotkey.bind(hyper, '1', function() hs.layout.apply(internal_display) end)
-hs.hotkey.bind(hyper, '2', function() hs.layout.apply(dual_display) end)
+hotkey.bind(hyper, '1', function() layout.apply(internal_display) end)
+hotkey.bind(hyper, '2', function() layout.apply(dual_display) end)
 --}}}
