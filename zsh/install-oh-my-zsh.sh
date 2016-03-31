@@ -1,3 +1,4 @@
+#!/bin/bash
 #################################################################
 #   Copyright (C) 2016 Sean Guo. All rights reserved.
 #														  
@@ -9,7 +10,6 @@
 #	> Description:
 #################################################################
 
-#!/bin/bash
 #http://ohmyz.sh/
 #https://github.com/robbyrussell/oh-my-zsh/
 sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"

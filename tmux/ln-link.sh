@@ -1,3 +1,4 @@
+#!/bin/bash
 #################################################################
 #   Copyright (C) 2016 Sean Guo. All rights reserved.
 #														  
@@ -9,7 +10,6 @@
 #	> Description:
 #################################################################
 
-#!/bin/bash
 dotfile="tmux.conf"
 target="$HOME/.$dotfile"
 

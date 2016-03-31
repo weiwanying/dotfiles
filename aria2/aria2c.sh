@@ -1,3 +1,4 @@
+#!/bin/bash
 #################################################################
 #   Copyright (C) 2015 Sean Guo. All rights reserved.
 #														  
@@ -13,5 +14,4 @@
 #                 --rpc-secret:   http://token:xxxxxx@host:port/jsonrpc
 #################################################################
 
-#!/bin/bash
 aria2c --conf-path="$HOME/.aria2/aria2.conf" -D
