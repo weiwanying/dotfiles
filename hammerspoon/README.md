@@ -1,6 +1,8 @@
 [Hammerspoon](http://www.hammerspoon.org/)
 ====
 
+## hotkey settings - modules/hotkey.lua
+
 ###`hyper` = `ctrl` + `cmd`
 ###`hyperShift` = `ctrl` + `cmd` + `Shift`
 
@@ -8,38 +10,47 @@
 
 | Key | Description |
 |-----|-------------|
-| `hyper`+`c` | Focus AppCleaner |
-| `hyper`+`e` | Focus Evernote |
-| `hyper`+`j` | Focus Google Chrome |
-| `hyper`+`m` | Focus Finder |
-| `hyper`+`n` | Focus NeteaseMusic |
-| `hyper`+`o` | Focus OmniFocus |
-| `hyper`+`p` | Focus 1Password |
-| `hyper`+`r` | Focus Reeder |
-| `hyper`+`z` | Focus Dictionary |
-| `hyper`+`w` | Focus MacDown |
-| `hyper`+`;` | Show Window Hints |
+| `hyper`+`c` | Toggle AppCleaner |
+| `hyper`+`e` | Toggle Evernote |
+| `hyper`+`j` | Toggle Google Chrome |
+| `hyper`+`k` | Toggle MacDown |
+| `hyper`+`m` | Toggle Finder |
+| `hyper`+`n` | Toggle NeteaseMusic |
+| `hyper`+`o` | Toggle OmniToggle |
+| `hyper`+`p` | Toggle 1Password |
+| `hyper`+`r` | Toggle Reeder |
+| `hyper`+`u` | Toggle Ulysses |
+| `hyper`+`z` | Toggle Dictionary |
+| `hyper`+`;` | Toggle iTerm |
 | `hyper`+`ESC` | Reload Hammerspoon Config |
 
-### Layouts - modules/windows.lua
+### auto reload - modules/auto_reload.lua
+
+automatically reload the configuration whenever the file changes.
+
+### Window Layouts - modules/windows.lua
 
 | Key | Description |
 |-----|-------------|
-| `hyper`+`d` | Set the current app to left layout |
+| `hyper`+`[` | Set the current app to left layout |
 | `hyper`+`f` | Set the current app to fullscreen layout |
-| `hyper`+`g` | Set the current app to right layout |
-| `hyper`+`[` | Set the current app to left 30% layout |
-| `hyper`+`]` | Set the current app to right 70% layout |
+| `hyper`+`]` | Set the current app to right layout |
 | `hyper`+`,` | Show the window grid |
 | `hyper`+`Left` | Push the current app to the left screen |
 | `hyper`+`Right` | Push the current app to the right screen |
 | `hyper`+`Up` | Push the current app to the up screen |
 | `hyper`+`Down` | Push the current app to the down screen |
-
+| `hyper`+`/` | Show Window Hints |
 
 ### Move between displays - modules/screens.lua
 
 | Key | Description |
 |-----|-------------|
-| `hyper`+ `u` | Move to next display |
-| `hyperShift`+ `u` | Move to previous display |
+| `hyper`+ `.` | Move to next display |
+| `hyperShift`+ `.` | Move to previous display |
+
+### System hotkey - modules/system.lua
+
+| Key | Description |
+|-----|-------------|
+| `hyper`+ **`** | lock screen |

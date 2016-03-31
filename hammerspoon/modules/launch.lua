@@ -7,19 +7,20 @@ local key2App = {
     c = 'AppCleaner',
     e = 'Evernote',
     j = 'Google Chrome',
+    k = 'MacDown',
     m = 'Finder',
     n = 'NeteaseMusic',
     o = 'OmniFocus',
     p = '1Password',
     r = 'Reeder',
     s = 'Dash',
-    z = 'Dictionary',
-    w = 'MacDown'
+    u = 'Ulysses',
+    z = 'Dictionary'
 }
 
 for key, app in pairs(key2App) do
-    hotkey.bind(hyper, key, function() 
-        --application.launchOrFocus(app) 
+    hotkey.bind(hyper, key, function()
+        --application.launchOrFocus(app)
         toggle_application(app)
     end)
 end
@@ -34,6 +35,7 @@ end)
 
 -- reload
 hotkey.bind(hyper, 'escape', function() hs.reload() end )
+
 --}}}
 
 -- {{{ toggle_application

@@ -12,12 +12,9 @@ local grid = require 'hs.grid'
 local geometry = require 'hs.geometry'
 
 -- make window transitions much snappier
--- The default duration for animations, in seconds. 
+-- The default duration for animations, in seconds.
 -- Initial value is 0.2; set to 0 to disable animations.
 window.animationDuration = 0
-
-local display_macbook = "Color LCD"
-local display_monitor = "1970W"
 
 ------------- Window Management --------------- {{{
 ---- hyper d for left one half window
@@ -82,8 +79,8 @@ end)
 --hotkey.bind(hyper, ']', function() window.focusedWindow():moveToUnit(layout.right70) end)
 
 -- Hyper i to show window hints
-hotkey.bind(hyper, '.', function() 
-    hints.windowHints() 
+hotkey.bind(hyper, '/', function()
+    hints.windowHints()
 end)
 
 ---- Hyper hjkl to switch window focus
@@ -140,9 +137,9 @@ hotkey.bind(hyper, 'Up', grid.pushWindowUp)
 hotkey.bind(hyper, 'Down', grid.pushWindowDown)
 
 ---- hyper + left move the current window to the left monitor
---hotkey.bind(hyper, 'left', function() 
+--hotkey.bind(hyper, 'left', function()
 --    local w = window.focusedWindow()
---    if not w then 
+--    if not w then
 --        return
 --    end
 --    local s = w:screen():toWest()
@@ -152,9 +149,9 @@ hotkey.bind(hyper, 'Down', grid.pushWindowDown)
 --end)
 --
 ---- hyper + right move the current window to the right monitor
---hotkey.bind(hyper, 'right', function() 
+--hotkey.bind(hyper, 'right', function()
 --    local w = window.focusedWindow()
---    if not w then 
+--    if not w then
 --        return
 --    end
 --    local s = w:screen():toEast()
@@ -166,6 +163,9 @@ hotkey.bind(hyper, 'Down', grid.pushWindowDown)
 -- }}}
 
 ------------- Multi-window layouts --------------- {{{
+local display_macbook = "Color LCD"
+local display_monitor = "1970W"
+
 --  Format reminder:
 --      {"App name", "Window name", "Display Name", "unitrect", "framerect", "fullframerect"},
 --      geometry.rect('X','Y','Width','Height')
@@ -175,16 +175,17 @@ local internal_display = {
     {"AppCleaner",        nil,          display_macbook, geometry.unitrect(0, 0.6, 0.4, 0.4), nil, nil},
     {"Evernote",          nil,          display_macbook, layout.left75, nil, nil},
     {"Google Chrome",     nil,          display_macbook, layout.maximized, nil, nil},
+    {"MacDown",           nil,          display_macbook, geometry.unitrect(0, 0.5, 1, 0.5), nil, nil},
+    {"Ulysses",           nil,          display_macbook, layout.right50, nil, nil},
     {"Finder",            nil,          display_macbook, geometry.unitrect(0, 0, 0.6, 0.6), nil, nil},
     {"NeteaseMusic",      nil,          display_macbook, layout.left50, nil, nil},
-    {"Reeder",            nil,          display_macbook, layout.maximized, nil, nil},
     {"OmniFocus",         nil,          display_macbook, layout.left70, nil, nil},
+    {"Reeder",            nil,          display_macbook, layout.maximized, nil, nil},
     {"Mail",              nil,          display_macbook, layout.left75, nil, nil},
     {"1Password",         nil,          display_macbook, layout.left50, nil, nil},
     {"Calendar",          nil,          display_macbook, layout.left70, nil, nil},
     {"Dash",              nil,          display_macbook, layout.left70, nil, nil},
     {"Dictionary",        nil,          display_macbook, geometry.unitrect(0.4, 0.2, 0.6, 0.8), nil, nil},
-    {"MacDown",           nil,          display_macbook, geometry.unitrect(0, 0.5, 1, 0.5), nil, nil},
     {"Messages",          nil,          display_macbook, layout.right50, nil, nil},
     {"iTunes",            "iTunes",     display_macbook, layout.maximized, nil, nil},
     {"Preview",           nil,          display_macbook, layout.left75, nil, nil},
