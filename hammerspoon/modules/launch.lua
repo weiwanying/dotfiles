@@ -6,9 +6,10 @@ local application = require 'hs.application'
 local key2App = {
     c = 'AppCleaner',
     e = 'Evernote',
+    f = 'Finder',
     j = 'Google Chrome',
     k = 'Preview',
-    m = 'Finder',
+    m = 'MacDown',
     n = 'NeteaseMusic',
     o = 'OmniFocus',
     p = '1Password',
@@ -16,7 +17,7 @@ local key2App = {
     s = 'Dash',
     t = 'Tweetbot',
     u = 'Ulysses',
-    w = 'MacDown',
+    w = 'WeChat',
     z = 'Dictionary'
 }
 

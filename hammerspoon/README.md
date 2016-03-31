@@ -12,15 +12,18 @@
 |-----|-------------|
 | `hyper`+`c` | Toggle AppCleaner |
 | `hyper`+`e` | Toggle Evernote |
+| `hyper`+`f` | Toggle Finder |
 | `hyper`+`j` | Toggle Google Chrome |
 | `hyper`+`k` | Toggle Preview |
-| `hyper`+`m` | Toggle Finder |
+| `hyper`+`m` | Toggle MacDown |
 | `hyper`+`n` | Toggle NeteaseMusic |
 | `hyper`+`o` | Toggle OmniToggle |
 | `hyper`+`p` | Toggle 1Password |
 | `hyper`+`r` | Toggle Reeder |
+| `hyper`+`s` | Toggle Dash |
+| `hyper`+`t` | Toggle Tweetbot |
 | `hyper`+`u` | Toggle Ulysses |
-| `hyper`+`w` | Toggle MacDown |
+| `hyper`+`w` | Toggle WeChat |
 | `hyper`+`z` | Toggle Dictionary |
 | `hyper`+`;` | Toggle iTerm |
 | `hyper`+`ESC` | Reload Hammerspoon Config |
@@ -34,7 +37,7 @@ automatically reload the configuration whenever the file changes.
 | Key | Description |
 |-----|-------------|
 | `hyper`+`[` | Set the current app to left layout |
-| `hyper`+`f` | Set the current app to fullscreen layout |
+| `hyper`+`tab` | Set the current app to fullscreen layout |
 | `hyper`+`]` | Set the current app to right layout |
 | `hyper`+`,` | Show the window grid |
 | `hyper`+`Left` | Push the current app to the left screen |

@@ -57,7 +57,7 @@ hotkey.bind(hyper, ']', function() window.focusedWindow():moveToUnit(layout.righ
 
 -- hyper f for fullscreen
 --hotkey.bind(hyper, 'f', function() window.focusedWindow():toggleFullScreen() end)
-hotkey.bind(hyper, 'f', function()
+hotkey.bind(hyper, 'tab', function()
     if window.focusedWindow() then
         local win = window.focusedWindow()
         local f = win:frame()
