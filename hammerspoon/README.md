@@ -13,13 +13,14 @@
 | `hyper`+`c` | Toggle AppCleaner |
 | `hyper`+`e` | Toggle Evernote |
 | `hyper`+`j` | Toggle Google Chrome |
-| `hyper`+`k` | Toggle MacDown |
+| `hyper`+`k` | Toggle Preview |
 | `hyper`+`m` | Toggle Finder |
 | `hyper`+`n` | Toggle NeteaseMusic |
 | `hyper`+`o` | Toggle OmniToggle |
 | `hyper`+`p` | Toggle 1Password |
 | `hyper`+`r` | Toggle Reeder |
 | `hyper`+`u` | Toggle Ulysses |
+| `hyper`+`w` | Toggle MacDown |
 | `hyper`+`z` | Toggle Dictionary |
 | `hyper`+`;` | Toggle iTerm |
 | `hyper`+`ESC` | Reload Hammerspoon Config |

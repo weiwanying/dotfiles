@@ -186,6 +186,7 @@ local internal_display = {
     {"Calendar",          nil,          display_macbook, layout.left70, nil, nil},
     {"Dash",              nil,          display_macbook, layout.left70, nil, nil},
     {"Dictionary",        nil,          display_macbook, geometry.unitrect(0.4, 0.2, 0.6, 0.8), nil, nil},
+    {"Tweetbot",          nil,          display_macbook, layout.left50, nil, nil},
     {"Messages",          nil,          display_macbook, layout.right50, nil, nil},
     {"iTunes",            "iTunes",     display_macbook, layout.maximized, nil, nil},
     {"Preview",           nil,          display_macbook, layout.left75, nil, nil},

@@ -7,14 +7,16 @@ local key2App = {
     c = 'AppCleaner',
     e = 'Evernote',
     j = 'Google Chrome',
-    k = 'MacDown',
+    k = 'Preview',
     m = 'Finder',
     n = 'NeteaseMusic',
     o = 'OmniFocus',
     p = '1Password',
     r = 'Reeder',
     s = 'Dash',
+    t = 'Tweetbot',
     u = 'Ulysses',
+    w = 'MacDown',
     z = 'Dictionary'
 }
 
