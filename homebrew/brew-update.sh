@@ -10,9 +10,11 @@
 #	> Description:
 #################################################################
 
-brew update
-brew upgrade --cleanup
-#brew cleanup
+brew="/usr/local/bin/brew"
 
-brew cask update
-brew cask cleanup
+$brew update
+$brew upgrade --cleanup
+#$brew cleanup
+
+$brew cask update
+$brew cask cleanup
