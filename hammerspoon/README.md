@@ -13,6 +13,7 @@
 | `hyper`+`c` | Toggle AppCleaner |
 | `hyper`+`e` | Toggle Evernote |
 | `hyper`+`f` | Toggle Finder |
+| `hyper`+`h` | Toggle Dash |
 | `hyper`+`j` | Toggle Google Chrome |
 | `hyper`+`k` | Toggle Preview |
 | `hyper`+`m` | Toggle MacDown |
@@ -20,7 +21,7 @@
 | `hyper`+`o` | Toggle OmniToggle |
 | `hyper`+`p` | Toggle 1Password |
 | `hyper`+`r` | Toggle Reeder |
-| `hyper`+`s` | Toggle Dash |
+| `hyper`+`s` | Toggle System Preferences |
 | `hyper`+`t` | Toggle Tweetbot |
 | `hyper`+`u` | Toggle Ulysses |
 | `hyper`+`w` | Toggle WeChat |
