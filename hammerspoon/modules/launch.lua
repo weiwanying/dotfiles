@@ -16,9 +16,9 @@ local key2App = {
     p = '1Password',
     r = 'Reeder',
     s = 'System Preferences',
-    t = 'Tweetbot',
+    --t = 'Tweetbot',
     u = 'Ulysses',
-    w = 'WeChat',
+    --w = 'WeChat',
     z = 'Dictionary'
 }
 
