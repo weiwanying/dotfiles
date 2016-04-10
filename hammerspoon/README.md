@@ -13,6 +13,7 @@
 | `hyper`+`c` | Toggle AppCleaner |
 | `hyper`+`e` | Toggle Evernote |
 | `hyper`+`f` | Toggle Finder |
+| `hyper`+`g` | Toggle Mail |
 | `hyper`+`h` | Toggle Dash |
 | `hyper`+`j` | Toggle Google Chrome |
 | `hyper`+`k` | Toggle Preview |
