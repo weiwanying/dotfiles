@@ -21,3 +21,4 @@ git clone https://github.com/VundleVim/Vundle.vim.git $vim_dir/bundle/Vundle.vim
 # install all plugin by vundle.vim
 vim +PluginClean +qall
 vim +PluginInstall +qall
+#vim +PluginUpdate +qall
