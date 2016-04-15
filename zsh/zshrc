@@ -44,6 +44,8 @@ if [ `uname` = "Darwin" ];then
     # Macbook alias - md5
     alias md5='md5 -r'
     alias md5sum='md5 -r'	# ('md5 -r' in Mac) = ('md5sum' in Linux)
+    # PATH
+    export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/sbin:$PATH"
 else
     ZSH_THEME="blinks"          # Linux zsh 
 fi
