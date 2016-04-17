@@ -10,7 +10,10 @@
 
 | Key | Description |
 |-----|-------------|
-| `hyper`+`c` | Toggle AppCleaner |
+| `hyper`+`a` | Toggle AppCleaner |
+| `hyper`+`b` | Toggle Notes |
+| `hyper`+`c` | Toggle Calendar |
+| `hyper`+`d` | (System hotkey) Define word |
 | `hyper`+`e` | Toggle Evernote |
 | `hyper`+`f` | Toggle Finder |
 | `hyper`+`g` | Toggle Mail |
@@ -39,7 +42,7 @@ automatically reload the configuration whenever the file changes.
 | Key | Description |
 |-----|-------------|
 | `hyper`+`[` | Set the current app to left layout |
-| `hyper`+`tab` | Set the current app to fullscreen layout |
+| `hyper`+`tab` | Toggle the current app to fullscreen layout or normal layout |
 | `hyper`+`]` | Set the current app to right layout |
 | `hyper`+`,` | Show the window grid |
 | `hyper`+`Left` | Push the current app to the left screen |

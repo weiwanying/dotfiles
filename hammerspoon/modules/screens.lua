@@ -64,7 +64,6 @@ end)
 ------------- Multiple Screen Layouts --------------- {{{
 local screen_macbook    = "Color LCD"
 local screen_u2414h     = "DELL U2414H"
-local screen_1970w      = "1970W"
 
 --  Format reminder:
 --      {"App name", "Window name", "Display Name", "unitrect", "framerect", "fullframerect"},
