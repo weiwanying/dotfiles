@@ -17,9 +17,9 @@ local geometry = require 'hs.geometry'
 window.animationDuration = 0
 
 ------------- Window Management --------------- {{{
----- hyper d for left one half window
+---- hyper [ for left one half window
 hotkey.bind(hyper, '[', function() window.focusedWindow():moveToUnit(layout.left50) end)
---hotkey.bind(hyper, 'd', function()
+--hotkey.bind(hyper, '[', function()
 --    if window.focusedWindow() then
 --        local win = window.focusedWindow()
 --        local f = win:frame()
@@ -36,9 +36,9 @@ hotkey.bind(hyper, '[', function() window.focusedWindow():moveToUnit(layout.left
 --    end
 --end)
 
--- hyper g for right one half window
+-- hyper ] for right one half window
 hotkey.bind(hyper, ']', function() window.focusedWindow():moveToUnit(layout.right50) end)
---hotkey.bind(hyper, 'g', function()
+--hotkey.bind(hyper, ']', function()
 --    if window.focusedWindow() then
 --        local win = window.focusedWindow()
 --        local f = win:frame()
@@ -55,24 +55,39 @@ hotkey.bind(hyper, ']', function() window.focusedWindow():moveToUnit(layout.righ
 --    end
 --end)
 
--- hyper f for fullscreen
---hotkey.bind(hyper, 'f', function() window.focusedWindow():toggleFullScreen() end)
-hotkey.bind(hyper, 'tab', function()
-    if window.focusedWindow() then
-        local win = window.focusedWindow()
-        local f = win:frame()
-        local screen = win:screen()
-        local max = screen:frame()
+-- hyper tab for fullscreen
+--hotkey.bind(hyper, 'tab', function() window.focusedWindow():toggleFullScreen() end)
+--hotkey.bind(hyper, 'tab', function()
+    --if window.focusedWindow() then
+        --local win = window.focusedWindow()
+        --local f = win:frame()
+        --local screen = win:screen()
+        --local max = screen:frame()
 
-        f.x = max.x
-        f.y = max.y
-        f.w = max.w
-        f.h = max.h
-        win:setFrame(f)
+        --f.x = max.x
+        --f.y = max.y
+        --f.w = max.w
+        --f.h = max.h
+        --win:setFrame(f)
+    --else
+        --alert.show("No active window")
+    --end
+--end)
+
+hotkey.bind(hyper, 'tab', function() toggle_window_maximized() end)
+-- Defines for window maximize toggler
+local frameCache = {}
+-- Toggle a window between its normal size, and being maximized
+function toggle_window_maximized()
+    local win = window.focusedWindow()
+    if frameCache[win:id()] then
+        win:setFrame(frameCache[win:id()])
+        frameCache[win:id()] = nil
     else
-        alert.show("No active window")
+        frameCache[win:id()] = win:frame()
+        win:maximize()
     end
-end)
+end
 
 -- Hotkeys to resize windows absolutely
 --hotkey.bind(hyper, '[', function() window.focusedWindow():moveToUnit(layout.left30) end)
