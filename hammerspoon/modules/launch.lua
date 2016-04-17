@@ -4,7 +4,10 @@ local application = require 'hs.application'
 
 ------------- Switch to Application ---------------{{{
 local key2App = {
-    c = 'AppCleaner',
+    a = 'AppCleaner',
+    b = 'Notes',
+    c = 'Calendar',
+    -- d, (system hotkey) Ctrl + Cmd + d => define word
     e = 'Evernote',
     f = 'Finder',
     g = 'Mail',
@@ -47,24 +50,24 @@ hotkey.bind(hyper, 'escape', function() hs.reload() end )
 -- Toggle an application between being the frontmost app, and being hidden
 function toggle_application(_app)
     -- finds a running applications
-	local app = application.find(_app)
+    local app = application.find(_app)
 
-	if not app then
+    if not app then
         -- application not running, launch app
         application.launchOrFocus(_app)
         return
-	end
+    end
 
     -- application running, toggle hide/unhide
-	local mainwin = app:mainWindow()
-	if mainwin then
-		if true == app:isFrontmost() then
-			mainwin:application():hide()
-		else
-			mainwin:application():activate(true)
-			mainwin:application():unhide()
-			mainwin:focus()
-		end
+    local mainwin = app:mainWindow()
+    if mainwin then
+        if true == app:isFrontmost() then
+            mainwin:application():hide()
+        else
+            mainwin:application():activate(true)
+            mainwin:application():unhide()
+            mainwin:focus()
+        end
     else
         -- no windows, maybe hide
         if true == app:hide() then
@@ -73,7 +76,7 @@ function toggle_application(_app)
         else
             -- nothing to do
         end
-	end
+    end
 end
 
 -- }}}
