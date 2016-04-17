@@ -5,6 +5,7 @@ local hotkey = require "hs.hotkey"
 local fnutils = require "hs.fnutils"
 local geometry = require "hs.geometry"
 local mouse = require "hs.mouse"
+local layout = require 'hs.layout'
 
 local screen_switch_key = '.';
 
@@ -59,3 +60,51 @@ hotkey.bind(hyperShift, screen_switch_key, function()
 end)
 
 -- END DISPLAY FOCUS SWITCHING -- }}}
+
+------------- Multiple Screen Layouts --------------- {{{
+local screen_macbook    = "Color LCD"
+local screen_u2414h     = "DELL U2414H"
+local screen_1970w      = "1970W"
+
+--  Format reminder:
+--      {"App name", "Window name", "Display Name", "unitrect", "framerect", "fullframerect"},
+--      geometry.rect('X','Y','Width','Height')
+--      geometry.unitrect(X%,Y%,Width%,Height%)
+local this_screen = screen_macbook
+local layout_macbook = {
+    {"AppCleaner",        nil,          this_screen, geometry.unitrect(0, 0.6, 0.4, 0.4), nil, nil},
+    {"Finder",            nil,          this_screen, geometry.unitrect(0, 0, 0.6, 0.6), nil, nil},
+    {"NeteaseMusic",      nil,          this_screen, layout.left50, nil, nil},
+    {"WeChat",            nil,          this_screen, layout.left70, nil, nil},
+    {"Dash",              nil,          this_screen, layout.left70, nil, nil},
+    {"Dictionary",        nil,          this_screen, geometry.unitrect(0.4, 0.2, 0.6, 0.8), nil, nil},
+    {"Calendar",          nil,          this_screen, layout.left70, nil, nil},
+    {"Messages",          nil,          this_screen, layout.right50, nil, nil},
+    {"App Store",         nil,          this_screen, layout.left75, nil, nil},
+    {"iTunes",            "MiniPlayer", this_screen, nil, nil, geometry.rect(0, -48, 400, 48)},
+    {"Tweetbot",          nil,          this_screen, layout.left50, nil, nil},
+}
+
+local this_screen = screen_u2414h
+local layout_u2414h= {
+    {"Evernote",          nil,          this_screen, layout.left75, nil, nil},
+    {"Google Chrome",     nil,          this_screen, layout.maximized, nil, nil},
+    {"MacDown",           nil,          this_screen, geometry.unitrect(0, 0.5, 1, 0.5), nil, nil},
+    {"Ulysses",           nil,          this_screen, layout.right50, nil, nil},
+    {"OmniFocus",         nil,          this_screen, layout.left70, nil, nil},
+    {"Reeder",            nil,          this_screen, layout.maximized, nil, nil},
+    {"Mail",              nil,          this_screen, layout.left75, nil, nil},
+    {"1Password",         nil,          this_screen, layout.left50, nil, nil},
+    {"iTunes",            "iTunes",     this_screen, layout.maximized, nil, nil},
+    {"Preview",           nil,          this_screen, layout.left75, nil, nil},
+}
+
+local this_screen = screen_1970w
+local layout_1970w = {
+    {"iTerm2",            nil,          this_screen, geometry.unitrect(0, 0.03, 1, 0.97), nil, nil},
+}
+
+hotkey.bind(hyper, '1', function() layout.apply(layout_macbook) end)
+hotkey.bind(hyper, '2', function() layout.apply(layout_u2414h) end)
+hotkey.bind(hyper, '3', function() layout.apply(layout_1970w) end)
+--}}}
