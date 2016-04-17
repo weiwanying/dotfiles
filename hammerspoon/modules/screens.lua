@@ -70,41 +70,60 @@ local screen_1970w      = "1970W"
 --      {"App name", "Window name", "Display Name", "unitrect", "framerect", "fullframerect"},
 --      geometry.rect('X','Y','Width','Height')
 --      geometry.unitrect(X%,Y%,Width%,Height%)
-local this_screen = screen_macbook
-local layout_macbook = {
-    {"AppCleaner",        nil,          this_screen, geometry.unitrect(0, 0.6, 0.4, 0.4), nil, nil},
-    {"Finder",            nil,          this_screen, geometry.unitrect(0, 0, 0.6, 0.6), nil, nil},
-    {"NeteaseMusic",      nil,          this_screen, layout.left50, nil, nil},
-    {"WeChat",            nil,          this_screen, layout.left70, nil, nil},
-    {"Dash",              nil,          this_screen, layout.left70, nil, nil},
-    {"Dictionary",        nil,          this_screen, geometry.unitrect(0.4, 0.2, 0.6, 0.8), nil, nil},
-    {"Calendar",          nil,          this_screen, layout.left70, nil, nil},
-    {"Messages",          nil,          this_screen, layout.right50, nil, nil},
-    {"App Store",         nil,          this_screen, layout.left75, nil, nil},
-    {"iTunes",            "MiniPlayer", this_screen, nil, nil, geometry.rect(0, -48, 400, 48)},
-    {"Tweetbot",          nil,          this_screen, layout.left50, nil, nil},
+local layout_internal = {
+    {"AppCleaner",        nil,          screen_macbook, geometry.unitrect(0, 0.6, 0.4, 0.4), nil, nil},
+    {"Notes",             nil,          screen_macbook, geometry.unitrect(0.5, 0.5, 0.5, 0.5), nil, nil},
+    {"Finder",            nil,          screen_macbook, geometry.unitrect(0, 0, 0.6, 0.6), nil, nil},
+    {"NeteaseMusic",      nil,          screen_macbook, layout.left50, nil, nil},
+    {"WeChat",            nil,          screen_macbook, layout.left70, nil, nil},
+    {"Dash",              nil,          screen_macbook, layout.left70, nil, nil},
+    {"Dictionary",        nil,          screen_macbook, geometry.unitrect(0.4, 0.2, 0.6, 0.8), nil, nil},
+    {"Calendar",          nil,          screen_macbook, layout.left70, nil, nil},
+    {"Messages",          nil,          screen_macbook, layout.right50, nil, nil},
+    {"App Store",         nil,          screen_macbook, layout.left75, nil, nil},
+    {"iTunes",            "MiniPlayer", screen_macbook, nil, nil, geometry.rect(0, -48, 400, 48)},
+    {"Tweetbot",          nil,          screen_macbook, layout.left50, nil, nil},
+    {"Evernote",          nil,          screen_macbook, layout.left75, nil, nil},
+    {"Google Chrome",     nil,          screen_macbook, layout.maximized, nil, nil},
+    {"MacDown",           nil,          screen_macbook, geometry.unitrect(0, 0.5, 1, 0.5), nil, nil},
+    {"Ulysses",           nil,          screen_macbook, layout.right50, nil, nil},
+    {"OmniFocus",         nil,          screen_macbook, layout.left70, nil, nil},
+    {"Reeder",            nil,          screen_macbook, layout.maximized, nil, nil},
+    {"Mail",              nil,          screen_macbook, layout.left75, nil, nil},
+    {"1Password",         nil,          screen_macbook, layout.left50, nil, nil},
+    {"iTunes",            "iTunes",     screen_macbook, layout.maximized, nil, nil},
+    {"Preview",           nil,          screen_macbook, layout.left75, nil, nil},
+    {"iTerm2",            nil,          screen_macbook, layout.maximized, nil, nil},
 }
 
-local this_screen = screen_u2414h
-local layout_u2414h= {
-    {"Evernote",          nil,          this_screen, layout.left75, nil, nil},
-    {"Google Chrome",     nil,          this_screen, layout.maximized, nil, nil},
-    {"MacDown",           nil,          this_screen, geometry.unitrect(0, 0.5, 1, 0.5), nil, nil},
-    {"Ulysses",           nil,          this_screen, layout.right50, nil, nil},
-    {"OmniFocus",         nil,          this_screen, layout.left70, nil, nil},
-    {"Reeder",            nil,          this_screen, layout.maximized, nil, nil},
-    {"Mail",              nil,          this_screen, layout.left75, nil, nil},
-    {"1Password",         nil,          this_screen, layout.left50, nil, nil},
-    {"iTunes",            "iTunes",     this_screen, layout.maximized, nil, nil},
-    {"Preview",           nil,          this_screen, layout.left75, nil, nil},
+local layout_multiple= {
+    {"AppCleaner",        nil,          screen_macbook, geometry.unitrect(0, 0.6, 0.4, 0.4), nil, nil},
+    {"Notes",             nil,          screen_u2414h, geometry.unitrect(0.5, 0.5, 0.5, 0.5), nil, nil},
+    {"Finder",            nil,          screen_u2414h, geometry.unitrect(0, 0, 0.6, 0.6), nil, nil},
+    {"NeteaseMusic",      nil,          screen_macbook, layout.left50, nil, nil},
+    {"WeChat",            nil,          screen_macbook, layout.left70, nil, nil},
+    {"Dash",              nil,          screen_macbook, layout.left70, nil, nil},
+    {"Dictionary",        nil,          screen_macbook, geometry.unitrect(0.4, 0.2, 0.6, 0.8), nil, nil},
+    {"Calendar",          nil,          screen_macbook, layout.left70, nil, nil},
+    {"Messages",          nil,          screen_macbook, layout.right50, nil, nil},
+    {"App Store",         nil,          screen_macbook, layout.left75, nil, nil},
+    {"iTunes",            "MiniPlayer", screen_macbook, nil, nil, geometry.rect(0, -48, 400, 48)},
+    {"Tweetbot",          nil,          screen_macbook, layout.left50, nil, nil},
+    {"Evernote",          nil,          screen_u2414h, layout.left75, nil, nil},
+    {"Google Chrome",     nil,          screen_u2414h, layout.maximized, nil, nil},
+    {"MacDown",           nil,          screen_u2414h, geometry.unitrect(0, 0.5, 1, 0.5), nil, nil},
+    {"Ulysses",           nil,          screen_u2414h, layout.right50, nil, nil},
+    {"OmniFocus",         nil,          screen_u2414h, layout.left70, nil, nil},
+    {"Reeder",            nil,          screen_u2414h, layout.maximized, nil, nil},
+    {"Mail",              nil,          screen_u2414h, layout.left75, nil, nil},
+    {"1Password",         nil,          screen_u2414h, layout.left50, nil, nil},
+    {"iTunes",            "iTunes",     screen_macbook, layout.maximized, nil, nil},
+    {"Preview",           nil,          screen_macbook, layout.left75, nil, nil},
+    {"iTerm2",            nil,          screen_u2414h, layout.maximized, nil, nil},
 }
 
-local this_screen = screen_1970w
-local layout_1970w = {
-    {"iTerm2",            nil,          this_screen, geometry.unitrect(0, 0.03, 1, 0.97), nil, nil},
-}
-
-hotkey.bind(hyper, '1', function() layout.apply(layout_macbook) end)
-hotkey.bind(hyper, '2', function() layout.apply(layout_u2414h) end)
-hotkey.bind(hyper, '3', function() layout.apply(layout_1970w) end)
+-- Only one screen
+hotkey.bind(hyper, '1', function() layout.apply(layout_internal) end)
+-- Multiple screens
+hotkey.bind(hyper, '2', function() layout.apply(layout_multiple) end)
 --}}}
