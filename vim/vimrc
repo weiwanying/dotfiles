@@ -5,7 +5,6 @@
 "     > File Name:         < .vimrc >
 "     > Author:            < Sean Guo >
 "     > Mail:              < iseanxp+code@gmail.com >
-"     > Last Changed:      < 2016/03/29 >
 "     > Description:	   vimrc for gxp
 "
 "    #####                       #     # ######     #     # ### #     #
@@ -60,6 +59,10 @@ set lazyredraw
 " {{{ Leader Shortcuts & Key Mapping
 
 inoremap jk <esc>
+" Save
+nnoremap s :w<CR>
+" Kill window
+nnoremap K :q<CR>
 
 " With a map leader it's possible to do extra key combinations
 let mapleader = ","
@@ -68,14 +71,24 @@ let g:mapleader = ","
 nnoremap <leader>w :w!<CR>
 nnoremap <leader>W :wq<CR>
 nnoremap <leader>q :q!<CR>
-nnoremap <leader>1 :set number!<CR>
-nnoremap <leader>2 :nohlsearch<CR>
+nnoremap <leader>1 :setlocal number!<CR>
+nnoremap <leader>2 :setlocal list!<CR>
 nnoremap <leader>$ :call DeleteTrailingWS()<CR>
+" paste from system clipboard (Ctrl/Cmd + V)
+noremap <leader>p "*p
 nnoremap <leader>pp :setlocal paste!<CR>
 "nnoremap <leader>a :normal @a<CR>
 nnoremap <leader>d :read !date<CR>
 " Remove the Windows '^M' - when the encodings gets messed up
 nnoremap <Leader>m mmHmt:%s/<C-V><CR>//ge<CR>'tzt'm
+" Sort lines
+nnoremap <leader>s vip:!sort<CR>
+vnoremap <leader>s :!sort<CR>
+" no highlight search
+nnoremap <leader>S :nohlsearch<CR>
+" Tabs
+nnoremap <leader>( :tabprev<CR>
+nnoremap <leader>) :tabnext<CR>
 
 " Quickly open a buffer for scribble
 nnoremap <leader>b :e ./buffer<CR>
@@ -460,7 +473,6 @@ endfunc
 
 " {{{ NewFile
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
 " :au[tocmd] [group] {event} {pat} [nested] {cmd}
 " 把 {cmd} 加到 Vim 在匹配 {pat} 模式的文件执行 {event} 事件时自动执行的命令列表。
 " Vim 把 {cmd} 加到已有的自动命令之后, 从而使自动命令的执行顺序与其定义的顺序相同。
