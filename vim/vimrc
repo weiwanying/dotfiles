@@ -489,6 +489,7 @@ func SetTitle_sh()
     call append(line(".")+8,  "\#################################################################")
     call append(line(".")+9, "")
 endfunc
+"   :help expand()
 "	expand参数
 "	----------------------------
 "	%		获取文件名
@@ -540,10 +541,10 @@ func SetTitle_h()
     call append(line(".")+6,  "  > Description:")
     call append(line(".")+7,  " ****************************************************************/")
     call append(line(".")+8,  "")
-    call append(line(".")+9,  "#ifndef __".expand("%:r")."__")
-    call append(line(".")+10, "#define __".expand("%:r")."__")
+    call append(line(".")+9,  "#ifndef __".toupper(expand("%:r"))."_H__")
+    call append(line(".")+10, "#define __".toupper(expand("%:r"))."_H__")
     call append(line(".")+11, "")
-    call append(line(".")+12, "#endif /* __".expand("%:r")."__ */")
+    call append(line(".")+12, "#endif /* __".toupper(expand("%:r"))."_H__ */")
 endfunc
 
 func SetTitle_java()
