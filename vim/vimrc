@@ -5,7 +5,7 @@
 "     > File Name:         < .vimrc >
 "     > Author:            < Sean Guo >
 "     > Mail:              < iseanxp+code@gmail.com >
-"     > Description:       vimrc for gxp
+"     > Description:       vimrc for SeanXP
 "
 "    #####                       #     # ######     #     # ### #     #
 "   #     # ######   ##   #    #  #   #  #     #    #     #  #  ##   ##
@@ -339,7 +339,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 " Syntax checking hacks for vim
-Plugin 'scrooloose/syntastic'
+"Plugin 'scrooloose/syntastic'
 " The NERD Commenter
 Plugin 'scrooloose/nerdcommenter'
 " The NERD Tree, explore filesystem and open files and directories.
