@@ -12,6 +12,7 @@ local key2App = {
     f = 'Finder',
     g = 'Mail',
     h = 'Dash',
+    i = 'ImageOptim',
     j = 'Google Chrome',
     k = 'Preview',
     m = 'MacDown',
