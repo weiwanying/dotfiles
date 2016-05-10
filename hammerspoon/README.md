@@ -18,17 +18,23 @@
 | `hyper`+`f` | Toggle Finder |
 | `hyper`+`g` | Toggle Mail |
 | `hyper`+`h` | Toggle Dash |
+| `hyper`+`i` | Toggle iTunes |
 | `hyper`+`j` | Toggle Google Chrome |
 | `hyper`+`k` | Toggle Preview |
+| `hyper`+`l` | |
 | `hyper`+`m` | Toggle MacDown |
 | `hyper`+`n` | Toggle NeteaseMusic |
 | `hyper`+`o` | Toggle OmniToggle |
 | `hyper`+`p` | Toggle 1Password |
+| `hyper`+`q` | |
 | `hyper`+`r` | Toggle Reeder |
 | `hyper`+`s` | Toggle System Preferences |
 | `hyper`+`t` | Toggle Tweetbot |
 | `hyper`+`u` | Toggle Ulysses |
+| `hyper`+`v` | Toggle QQ |
 | `hyper`+`w` | Toggle WeChat |
+| `hyper`+`x` | |
+| `hyper`+`y` | |
 | `hyper`+`z` | Toggle Dictionary |
 | `hyper`+`;` | Toggle iTerm |
 | `hyper`+`ESC` | Reload Hammerspoon Config |

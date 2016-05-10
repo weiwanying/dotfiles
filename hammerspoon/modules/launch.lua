@@ -12,18 +12,23 @@ local key2App = {
     f = 'Finder',
     g = 'Mail',
     h = 'Dash',
-    i = 'ImageOptim',
+    i = 'iTunes',
     j = 'Google Chrome',
     k = 'Preview',
+    --l = '',
     m = 'MacDown',
     n = 'NeteaseMusic',
     o = 'OmniFocus',
     p = '1Password',
+    --q, -- useless?
     r = 'Reeder',
     s = 'System Preferences',
     t = 'Tweetbot',
     u = 'Ulysses',
+    v = 'QQ',
     w = 'WeChat',
+    --x = '',
+    --y = '',
     z = 'Dictionary'
 }
 
