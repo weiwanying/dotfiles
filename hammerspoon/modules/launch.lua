@@ -15,7 +15,7 @@ local key2App = {
     i = 'iTunes',
     j = 'Google Chrome',
     k = 'Preview',
-    --l = '',
+    l = 'Dictionary',
     m = 'MacDown',
     n = 'NeteaseMusic',
     o = 'OmniFocus',
@@ -29,7 +29,7 @@ local key2App = {
     w = 'WeChat',
     --x = '',
     --y = '',
-    z = 'Dictionary'
+    z = ''
 }
 
 for key, app in pairs(key2App) do

@@ -21,7 +21,7 @@
 | `hyper`+`i` | Toggle iTunes |
 | `hyper`+`j` | Toggle Google Chrome |
 | `hyper`+`k` | Toggle Preview |
-| `hyper`+`l` | |
+| `hyper`+`l` | Toggle Dictionary |
 | `hyper`+`m` | Toggle MacDown |
 | `hyper`+`n` | Toggle NeteaseMusic |
 | `hyper`+`o` | Toggle OmniToggle |
@@ -35,7 +35,7 @@
 | `hyper`+`w` | Toggle WeChat |
 | `hyper`+`x` | |
 | `hyper`+`y` | |
-| `hyper`+`z` | Toggle Dictionary |
+| `hyper`+`z` | |
 | `hyper`+`;` | Toggle iTerm |
 | `hyper`+`ESC` | Reload Hammerspoon Config |
 
