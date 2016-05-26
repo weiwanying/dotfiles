@@ -28,7 +28,7 @@ local key2App = {
     v = 'QQ',
     w = 'WeChat',
     --x = '',
-    --y = '',
+    y = 'Messages',
     z = ''
 }
 
