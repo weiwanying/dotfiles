@@ -11,12 +11,14 @@
 #                     Vundle is short for Vim bundle and is a Vim plugin manager.
 #################################################################
 
-vim_dir=$HOME/.vim
-mkdir -p $vim_dir/bundle
+vim_dir="$HOME/.vim"
+bundle_dir="$vim_dir/bundle"
 
-# vundle.vim
-# https://github.com/VundleVim/Vundle.vim
-git clone https://github.com/VundleVim/Vundle.vim.git $vim_dir/bundle/Vundle.vim
+if [ ! -d "$bundle_dir" ];then
+  mkdir -p $vim_dir/bundle
+  # https://github.com/VundleVim/Vundle.vim
+  git clone https://github.com/VundleVim/Vundle.vim.git $vim_dir/bundle/Vundle.vim
+fi
 
 # install all plugin by vundle.vim
 vim +PluginClean +qall
