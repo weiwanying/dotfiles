@@ -37,6 +37,6 @@ do
     sed -i "$ a [$project:/]" authz
     sed -i "$ a $USER = rw" authz
     # 配置权限
-    chown -R svn:svn $SVN_PROJECT
+    chown -R svn:apache $SVN_PROJECT
   fi
 done
