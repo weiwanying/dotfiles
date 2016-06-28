@@ -39,8 +39,7 @@ sed -i "$ a [demo:/]" authz
 sed -i "$ a $USER = rw" authz
 
 # 创建svn账户，且不配置密码（不可登录），仅用于运行svnserve服务
-# -s /sbin/nologin
-useradd -c "svn user" -d $SVN_ROOT -M svn
+useradd -c "svn user" -d $SVN_ROOT -M svn -s /sbin/nologin
 usermod -a -G apache svn
 chown -R svn:apache $SVN_ROOT
 
