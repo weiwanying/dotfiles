@@ -1,3 +1,4 @@
+#!/bin/bash
 #################################################################
 #   Copyright (C) 2016 Sean Guo. All rights reserved.
 #
@@ -11,19 +12,19 @@
 #	                    3. iptables.allow
 #     参考: <鸟哥的Linux私房菜> - 服务器架设篇 - 第九章
 #################################################################
-
-#!/bin/bash
-
 #{{{ 具体机器相关
 # 外网, Public IP
 EXTIF="eth1"
+EXTIP="1.2.3.4"
+
 # 内网, LAN; 无内网则为空
 INIF="eth2"
 #INIF=""
+
 # 内网网络
 INNET="192.168.1.0/24"
 #INNET=""
-export EXINF  INIF  INNET
+export EXINF  INIF  INNET EXTIP
 #}}}
 
 #{{{ 本机相关 - iptables - filter
@@ -149,23 +150,23 @@ fi
 
 # 4. NAT 服务器后端的LAN 内对外部服务器设定
 #   NAT PREROUTING 修改数据包报头的目标IP - DNAT(Destination Network Address Translation)
-#   来自外网接口, 目标端口为映射端口的数据包, 将其目标IP修改为LAN内的服务器IP;
-#       Public_IP:9091 -> 1.2.3.4:9091, transmission web interface;
-#iptables -t nat -A PREROUTING -p tcp -i $EXTIF --dport 9091 -j DNAT --to-destination 1.2.3.4:9091 # transmission web
+#   来自外网接口, 目标端口为映射端口的数据包, 将其目标IP修改为LAN内的服务器IP; Public_IP:9091 -> Private_IP:9091, transmission web interface;
+iptables -t nat -A PREROUTING -i $EXTIF -p tcp --dport 9091 -j DNAT --to-destination 192.168.1.100:9091 # transmission web
 #   注意: 局域网内访问Public IP, 与外网访问Public IP的效果不同; 上条规则只适用于外网IP访问Public IP;
 #   下条规则，不指定网络接口，而是指定目标IP，则无论内外网，只要访问Public IP，就可以端口映射;
-#iptables -t nat -A PREROUTING -d 111.222.333.444 -p tcp --dport 9091 -j DNAT --to-destination 1.2.3.4:9091
+iptables -t nat -A PREROUTING -d $EXTIP -p tcp --dport 9091 -j DNAT --to-destination 192.168.1.100:9091
 
-iptables -t nat -A PREROUTING -d 111.222.333.444 -p tcp --dport 3690 -j DNAT --to-destination 1.2.3.4:3690    # svn
-iptables -t nat -A PREROUTING -d 111.222.333.444 -p tcp --dport 7777 -j DNAT --to-destination 1.2.3.4:22      # ssh
+iptables -t nat -A PREROUTING -d $EXTIP -p tcp --dport 3690 -j DNAT --to-destination 192.168.1.100:3690       # svn
+iptables -t nat -A PREROUTING -d $EXTIP -p tcp --dport 7777 -j DNAT --to-destination 192.168.1.100:22         # ssh
 
-# 5. 特殊的功能，包括 Windows 远程桌面所产生的规则，假设桌面主机为 1.2.3.4
-# iptables -t nat -A PREROUTING -p tcp -s 1.2.3.4  --dport 6000 -j DNAT --to-destination 192.168.100.10
-# iptables -t nat -A PREROUTING -p tcp -s 1.2.3.4  --sport 3389 -j DNAT --to-destination 192.168.100.20
+# 5. 特殊的功能，包括 Windows 远程桌面所产生的规则，假设桌面主机IP为 1.2.3.4
+# iptables -t nat -A PREROUTING -p tcp -s 1.2.3.4 --dport 6000 -j DNAT --to-destination 192.168.1.10
+# iptables -t nat -A PREROUTING -p tcp -s 1.2.3.4 --sport 3389 -j DNAT --to-destination 192.168.1.20
 #}}}
 
 #{{{ 储存iptables设定
 # /etc/init.d/iptables is no longer used.
 #/etc/init.d/iptables save
+
 # 将此脚本添加至开机启动/ect/rc.local中，每次开机重新配置一遍。
 #}}}
