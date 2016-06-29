@@ -57,7 +57,7 @@ sersebool -P allow_ftpd_full_access=1
 #}}}
 #{{{ 6. FTP root
 # 创建FTP用户，且不配置密码（不可登录），仅用于运行ftp服务
-useradd -c "ftp user" -M vsftpd -s /sbin/nologin
+useradd -c "ftp user" -M vsftpd -s /sbin/nologin -d $FTP_ROOT
 mkdir -p "$FTP_ROOT/ftp"
 chown -R vsftpd:vsftpd $FTP_ROOT
 chmod a-w $FTP_ROOT
