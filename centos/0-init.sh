@@ -30,6 +30,12 @@
 # 测试网络
 #ping www.baidu.com
 #}}}
+#{{{ 2. hostname
+SERVERNAME="SeanServer"
+hostname $SERVERNAME
+echo "$SERVERNAME" > /etc/hostname
+sed -i "s/localhost.localdomain/$SERVERNAME/g" /etc/hosts
+#}}}
 #{{{ 2. install software
 yum -y install zsh git tmux wget subversion
 yum -y install httpd vsftpd
