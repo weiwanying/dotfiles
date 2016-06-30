@@ -592,5 +592,7 @@ func SetTitle_py()
     call append(line(".")+8,  "\#   > Description:")
     call append(line(".")+9, "\#################################################################")
     call append(line(".")+10, "")
+    call append(line(".")+11, "if __name__ == '__main__':")
+    call append(line(".")+12, "    pass")
 endfunc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
