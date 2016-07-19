@@ -37,7 +37,13 @@ echo "$SERVERNAME" > /etc/hostname
 sed -i "s/localhost.localdomain/$SERVERNAME/g" /etc/hosts
 #}}}
 #{{{ 2. install software
-yum -y install zsh git tmux wget subversion
+yum -y install vim zsh git tmux wget subversion
 yum -y install httpd vsftpd
 #yum -y install mariadb mariadb-server
+
+## {{{mentohust
+# Google Code( https://code.google.com/archive/p/mentohust/downloads )
+#wget https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/mentohust/mentohust-0.3.4-2.el6.x86_64.rpm
+#rpm -i mentohust-0.3.4-2.el6.x86_64.rpm
+## }}}
 #}}}

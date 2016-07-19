@@ -74,6 +74,7 @@ nnoremap <leader>q :q!<CR>
 nnoremap <leader>1 :setlocal number!<CR>
 nnoremap <leader>2 :setlocal list!<CR>
 nnoremap <leader>$ :call DeleteTrailingWS()<CR>
+nnoremap <leader>3 :1,$s/	/\ \ \ \ /g<CR>
 " paste from system clipboard (Ctrl/Cmd + V)
 noremap <leader>p "*p
 nnoremap <leader>pp :setlocal paste!<CR>
@@ -82,8 +83,8 @@ nnoremap <leader>d :read !date<CR>
 " Remove the Windows '^M' - when the encodings gets messed up
 nnoremap <Leader>m mmHmt:%s/<C-V><CR>//ge<CR>'tzt'm
 " Sort lines
-nnoremap <leader>s vip:!sort<CR>
-vnoremap <leader>s :!sort<CR>
+"nnoremap <leader>s vip:!sort<CR>
+"vnoremap <leader>s :!sort<CR>
 " no highlight search
 nnoremap <leader>S :nohlsearch<CR>
 " Tabs
@@ -580,7 +581,7 @@ func SetTitle_java()
 endfunc
 
 func SetTitle_py()
-    call setline(1,           "\#! /usr/bin/env python3")
+    call setline(1,           "\#! /usr/bin/env python")
     call append(line("."),    "\#-*- coding: utf-8 -*-")
     call append(line(".")+1,  "\#################################################################")
     call append(line(".")+2,  "\#   Copyright (C) ".strftime("%Y")." Sean Guo. All rights reserved.")
