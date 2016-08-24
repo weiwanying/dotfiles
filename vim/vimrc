@@ -57,7 +57,6 @@ set lazyredraw
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
 " {{{ Leader Shortcuts & Key Mapping
-
 inoremap jk <esc>
 " Save
 nnoremap s :w<CR>
@@ -87,18 +86,9 @@ nnoremap <Leader>m mmHmt:%s/<C-V><CR>//ge<CR>'tzt'm
 "vnoremap <leader>s :!sort<CR>
 " no highlight search
 nnoremap <leader>S :nohlsearch<CR>
-" Tabs
-nnoremap <leader>( :tabprev<CR>
-nnoremap <leader>) :tabnext<CR>
-
-" Quickly open a buffer for scribble
-nnoremap <leader>b :e ./buffer<CR>
-" Quickly open a markdown buffer for scribble
-"nnoremap <leader>x :e ~/buffer.md<CR>
 
 " Remap VIM 0 to first non-blank character
 map 0 ^
-" Moving around, tabs, windows and buffers
 " Treat long lines as break lines (useful when moving around in them)
 " 在折断行间进行移动，需要打开 set wrap
 map j gj
@@ -109,12 +99,37 @@ map k gk
 " 与Mac切换输入法快捷键(Ctrl-<Space>)冲突, 故禁止
 "map <c-space> ?
 
+" {{{ VIM Tabs
+" Tabs
+" Useful mappings for managing tabs
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove
+" Opens a new tab with the current buffer's path
+" Super useful when editing files in the same directory
+map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+
+" not useful as (gt & gT)
+"nnoremap <leader>( :tabprev<CR>
+"nnoremap <leader>) :tabnext<CR>
+" }}}
+" {{{ VIM Windows
 " Smart way to move between windows
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
-
+" }}}
+" {{{ VIM Buffers
+" Unload buffer (default: current buffer) and delete it from the buffer list.
+map <leader>bd :bdelete<cr>
+map <leader>bD :bdelete!<cr>
+" Quickly open a buffer for scribble
+nnoremap <leader>b :e ./buffer<CR>
+" Quickly open a markdown buffer for scribble
+nnoremap <leader>x :e ~/buffer.md<CR>
+" }}}
 " {{{ Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Pressing ,ss will toggle and untoggle spell checking
@@ -126,7 +141,6 @@ map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 
 " {{{ VIM user interface
