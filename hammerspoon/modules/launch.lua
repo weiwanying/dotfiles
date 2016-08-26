@@ -1,7 +1,9 @@
 local hotkey = require 'hs.hotkey'
 local window = require 'hs.window'
 local application = require 'hs.application'
+local itunes = require 'hs.itunes'
 
+-- hs.keycodes.map http://www.hammerspoon.org/docs/hs.keycodes.html#map
 ------------- Switch to Application ---------------{{{
 local key2App = {
     a = 'AppCleaner',
@@ -25,7 +27,7 @@ local key2App = {
     s = 'System Preferences',
     t = 'Tweetbot',
     u = 'Ulysses',
-    v = 'QQ',
+    v = 'Parallels Desktop',
     w = 'WeChat',
     x = 'rtx',
     y = 'Messages',
@@ -48,10 +50,14 @@ hotkey.bind(hyper, ';', function()
 end)
 
 -- reload
-hotkey.bind(hyper, 'escape', function() hs.reload() end )
+hotkey.bind(hyper, 'escape', function() hs.reload() end)
+
+-- iTunes
+hotkey.bind(hyperShift, 'space', function() hs.itunes.playpause() end)
+hotkey.bind(hyperShift, 'n', function() hs.itunes.next() end)
+hotkey.bind(hyperShift, 'p', function() hs.itunes.previous() end)
 
 --}}}
-
 -- {{{ toggle_application
 -- Toggle an application between being the frontmost app, and being hidden
 function toggle_application(_app)
