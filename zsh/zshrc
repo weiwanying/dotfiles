@@ -55,8 +55,8 @@ fi
 # z, Shell下的目录跳转插件;
 # 'x' alias - swiss knife for archive extracting
 # history, aliases: h for history, hsi for grepping history;
-
-plugins=(git sudo colored-man-pages z extract history)
+# pip, Python package manager;
+plugins=(git sudo colored-man-pages z extract history pip)
 # }}}
 
 # {{{ zsh default 'Uncomment'
