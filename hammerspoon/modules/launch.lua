@@ -22,14 +22,14 @@ local key2App = {
     n = 'NeteaseMusic',
     o = 'OmniFocus',
     p = '1Password',
-    --q, -- useless?
+    q = 'App Store',
     r = 'Reeder',
     s = 'System Preferences',
     t = 'Tweetbot',
     u = 'Ulysses',
     v = 'Parallels Desktop',
-    w = 'WeChat',
-    x = 'rtx',
+    w = 'TorBrowser',
+    --x = '',
     y = 'Messages',
     z = ''
 }
