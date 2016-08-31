@@ -14,16 +14,24 @@ brew="/usr/local/bin/brew"
 
 $brew install ack
 $brew install aria2
+$brew install bash
 $brew install cmake
 $brew install cscope
 $brew install ctags
 $brew install curl
-$brew install fish
+$brew install gawk
+$brew install gdb
 $brew install git
+$brew install gnu-sed
 $brew install htop-osx
 $brew install nmap
+$brew install node
 $brew install p7zip
+$brew install perl
+$brew install python
+$brew install ruby
 $brew install ssh-copy-id
+$brew install shadowsocks-libev
 $brew install tmux
 $brew install tree
 $brew install zsh
