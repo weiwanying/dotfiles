@@ -6,6 +6,7 @@ local fnutils = require "hs.fnutils"
 local geometry = require "hs.geometry"
 local mouse = require "hs.mouse"
 local layout = require 'hs.layout'
+local alert = require 'hs.alert'
 
 local screen_switch_key = '.';
 
@@ -133,7 +134,7 @@ local layout_multiple = {
 }
 
 -- Only one screen
-hotkey.bind(hyper, '1', function() layout.apply(layout_internal) end)
+hotkey.bind(hyper, '1', function() layout.apply(layout_internal) alert.show("Macbook Layout") end)
 -- Multiple screens
-hotkey.bind(hyper, '2', function() layout.apply(layout_multiple) end)
+hotkey.bind(hyper, '2', function() layout.apply(layout_multiple) alert.show("U2414H + Macbook Layout") end)
 --}}}
