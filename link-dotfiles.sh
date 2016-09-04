@@ -39,3 +39,9 @@ if [ -d "$dotfiles/tmux" ];then
   cd "$dotfiles/tmux"
   sh ln-link.sh
 fi
+
+# install git
+if [ -d "$dotfiles/git" ];then
+  cd "$dotfiles/git"
+  sh ln-link.sh
+fi

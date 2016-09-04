@@ -1,5 +1,13 @@
 [user]
-	name = SeanXP
-	email = iseanxp+code@gmail.com
+    name = SeanXP
+    email = iseanxp+code@gmail.com
+[core]
+    excludesfile = ~/.gitignore
+    quotepath = false
+    editor = vim
+[color]
+    ui = true
 [push]
-	default = matching
+    default = simple
+[merge]
+    tool = vimdiff
