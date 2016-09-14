@@ -10,6 +10,7 @@
 #                     http://seanxp.com/2016/shadowsocks/
 #################################################################
 
+#curl https://bootstrap.pypa.io/get-pip.py | python
 yum install python-setuptools && easy_install pip
 pip install shadowsocks
 cp shadowsocks.json /etc/shadowsocks.json
@@ -24,7 +25,8 @@ cp shadowsocks.json /etc/shadowsocks.json
 # less /var/log/shadowsocks.log
 
 # 3. 使用 supervisord 实现开机自启动
-yum isntall supervisor
+#yum install supervisor
+pip install supervisor
 su - root -c "echo_supervisord_conf > /etc/supervisord.conf"
 cat supervisord-append.conf >> /etc/supervisord.conf
 echo "/usr/bin/supervisord -c /etc/supervisord.conf" >> /etc/rc.local
