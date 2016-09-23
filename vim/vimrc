@@ -48,14 +48,9 @@ filetype indent on
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" :W sudo saves the file
-" (useful for handling the permission-denied error)
-command W w !sudo tee % > /dev/null
-
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-
 " {{{ Leader Shortcuts & Key Mapping
 inoremap jk <esc>
 " Save
@@ -77,7 +72,7 @@ nnoremap <leader>3 :1,$s/	/\ \ \ \ /g<CR>
 " paste from system clipboard (Ctrl/Cmd + V)
 noremap <leader>p "*p
 nnoremap <leader>pp :setlocal paste!<CR>
-"nnoremap <leader>a :normal @a<CR>
+" nnoremap <leader>a :normal @a<CR>
 nnoremap <leader>d :read !date<CR>
 " Remove the Windows '^M' - when the encodings gets messed up
 nnoremap <Leader>m mmHmt:%s/<C-V><CR>//ge<CR>'tzt'm
@@ -98,6 +93,11 @@ map k gk
 "map <space> /
 " 与Mac切换输入法快捷键(Ctrl-<Space>)冲突, 故禁止
 "map <c-space> ?
+
+" :W sudo saves the file
+" (useful for handling the permission-denied error)
+command W w !sudo tee % > /dev/null
+
 
 " {{{ VIM Tabs
 " Tabs
@@ -142,8 +142,7 @@ map <leader>sa zg
 map <leader>s? z=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-
-" {{{ VIM user interface
+" {{{ user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " show line numbers
 set number
@@ -239,7 +238,6 @@ source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-
 " {{{ Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
@@ -280,7 +278,6 @@ set fileformats=unix
 "highlight OverLength ctermbg=red ctermfg=white guibg=red guifg=white
 "match OverLength '\%101v.*'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-
 " {{{ Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
@@ -288,7 +285,6 @@ set nobackup
 set nowritebackup
 set noswapfile
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-
 " {{{ Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Be smart when using tabs ;)
@@ -331,7 +327,6 @@ set linebreak
 " 关闭自定义折行
 "set nolinebreak
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-
 " {{{ Vim Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "https://github.com/VundleVim/Vundle.vim
@@ -397,7 +392,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-
 " {{{ cscope setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Usage:  cscope -Rbkq
@@ -432,6 +426,175 @@ nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 "}}}
+" {{{ Helper functions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Delete trailing white space on save, useful for Python and CoffeeScript ;)
+func! DeleteTrailingWS()
+    exe "normal mz"
+    %s/\s\+$//ge
+    exe "normal `z"
+endfunc
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
+" {{{ auto command
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" :autocmd [group] {event} {pattern} [nested] {command}
+"   * event, 触发事件
+"   * pattern, 匹配文件名的模式
+"   * nested, 如果出现，表示此自动命令能放在其他自动命令中
+" 把 {command} 添加到 Vim 在匹配 {pattern} 模式的文件执行 {event} 事件时自动执行的命令列表。
+" Vim 把 {command} 加到已有的自动命令之后, 从而使自动命令的执行顺序与其定义的顺序相同。
+
+" 新建下列文件时，自动添加作者相关信息至文件头
+autocmd BufNewFile *.sh         exec ":call SetTitle_sh()"
+autocmd BufNewFile *.cpp,*.c    exec ":call SetTitle_c()"
+autocmd BufNewFile *.h          exec ":call SetTitle_h()"
+autocmd BufNewFile *.java       exec ":call SetTitle_java()"
+autocmd BufNewFile *.py         exec ":call SetTitle_py()"
+" 新建文件后，自动定位到文件末尾
+autocmd BufNewFile *            normal G
+
+" :help expand()
+" ----------------------------
+" %       获取文件名
+" %:h     获取目录
+" %:t     获取不含路径的文件名
+" %:r     比'%'少后缀
+" %:e     获取后缀
+
+" use for append() line counter.
+let s:i = 0
+function! SelfAdd()
+    let s:i = s:i + 1
+    return s:i
+endf
+
+" {{{ SetTitle_sh_old()
+func SetTitle_sh_old()
+    call setline(1,           "\#!/bin/bash")
+    call append(line("."),    "\#################################################################")
+    call append(line(".")+1,  "\#   Copyright (C) ".strftime("%Y")." Sean Guo. All rights reserved.")
+    call append(line(".")+2,  "\#")
+    call append(line(".")+3,  "\#   > File Name:        < ".expand("%:t")." >")
+    call append(line(".")+4,  "\#   > Author:           < Sean Guo >")
+    call append(line(".")+6,  "\#   > Mail:             < iseanxp+code@gmail.com >")
+    call append(line(".")+6,  "\#   > Created Time:     < ".strftime("%Y/%m/%d")." >")
+    call append(line(".")+7,  "\#   > Description:")
+    call append(line(".")+8,  "\#################################################################")
+    call append(line(".")+9, "")
+endfunc
+" }}}
+" {{{ SetTitle_sh()
+func SetTitle_sh()
+    let s:i = 0
+    call setline(1,        "\#!/bin/bash")
+    call append(SelfAdd(), "\#################################################################")
+    call append(SelfAdd(), "\#   Copyright (C) ".strftime("%Y")." Sean Guo. All rights reserved.")
+    call append(SelfAdd(), "\#")
+    call append(SelfAdd(), "\#   > File Name:        < ".expand("%:t")." >")
+    call append(SelfAdd(), "\#   > Author:           < Sean Guo >")
+    call append(SelfAdd(), "\#   > Mail:             < iseanxp+code@gmail.com >")
+    call append(SelfAdd(), "\#   > Created Time:     < ".strftime("%Y/%m/%d")." >")
+    call append(SelfAdd(), "\#   > Description:")
+    call append(SelfAdd(), "\#################################################################")
+    call append(SelfAdd(), "")
+endfunc
+" }}}
+" {{{ SetTitle_c()
+func SetTitle_c()
+    let s:i = 0
+    call setline(1,        "/****************************************************************")
+    call append(SelfAdd(), "  Copyright (C) ".strftime("%Y")." Sean Guo. All rights reserved.")
+    call append(SelfAdd(), "")
+    call append(SelfAdd(), "  > File Name:         < ".expand("%:t")." >")
+    call append(SelfAdd(), "  > Author:            < Sean Guo >")
+    call append(SelfAdd(), "  > Mail:              < iseanxp+code@gmail.com >")
+    call append(SelfAdd(), "  > Created Time:      < ".strftime("%Y/%m/%d")." >")
+    call append(SelfAdd(), "  > Description:")
+    call append(SelfAdd(), "****************************************************************/")
+    call append(SelfAdd(), "")
+
+    if &filetype == 'cpp'
+        call append(SelfAdd(), "#include <iostream>")
+        call append(SelfAdd(), "using namespace std;")
+        call append(SelfAdd(), "int main(int argc, char* argv[])")
+        call append(SelfAdd(), "{")
+        call append(SelfAdd(), "")
+        call append(SelfAdd(), "    return 0;")
+        call append(SelfAdd(), "}")
+    endif
+
+    if &filetype == 'c'
+        call append(SelfAdd(), "#include <stdio.h>")
+        call append(SelfAdd(), "")
+        call append(SelfAdd(), "int main(int argc, char* argv[])")
+        call append(SelfAdd(), "{")
+        call append(SelfAdd(), "")
+        call append(SelfAdd(), "    return 0;")
+        call append(SelfAdd(), "}")
+    endif
+endfunc
+" }}}
+"{{{ SetTitle_h()
+func SetTitle_h()
+    let s:i = 0
+    call setline(1,        "/****************************************************************")
+    call append(SelfAdd(), "  Copyright (C) ".strftime("%Y")." Sean Guo. All rights reserved.")
+    call append(SelfAdd(), "")
+    call append(SelfAdd(), "  > File Name:         < ".expand("%:t")." >")
+    call append(SelfAdd(), "  > Author:            < Sean Guo >")
+    call append(SelfAdd(), "  > Mail:              < iseanxp+code@gmail.com >")
+    call append(SelfAdd(), "  > Created Time:      < ".strftime("%Y/%m/%d")." >")
+    call append(SelfAdd(), "  > Description:")
+    call append(SelfAdd(), "****************************************************************/")
+    call append(SelfAdd(), "")
+    call append(SelfAdd(), "#ifndef __".toupper(expand("%:r"))."_H__")
+    call append(SelfAdd(), "#define __".toupper(expand("%:r"))."_H__")
+    call append(SelfAdd(), "")
+    call append(SelfAdd(), "#endif /* __".toupper(expand("%:r"))."_H__ */")
+endfunc
+"}}}
+"{{{ SetTitle_java()
+func SetTitle_java()
+    let s:i = 0
+    call setline(1,        "/*--------------------------------------------------------------*")
+    call append(SelfAdd(), "  Copyright (C) ".strftime("%Y")." Sean Guo. All rights reserved.")
+    call append(SelfAdd(), "")
+    call append(SelfAdd(), "  > File Name:         < ".expand("%:t")." >")
+    call append(SelfAdd(), "  > Author:            < Sean Guo >")
+    call append(SelfAdd(), "  > Mail:              < iseanxp+code@gmail.com >")
+    call append(SelfAdd(), "  > Created Time:      < ".strftime("%Y/%m/%d")." >")
+    call append(SelfAdd(), "  > Description:")
+    call append(SelfAdd(), "*--------------------------------------------------------------*/")
+    call append(SelfAdd(), "")
+    call append(SelfAdd(), "public class ".expand("%:r"))
+    call append(SelfAdd(), "{")
+    call append(SelfAdd(), "    public static void main(String args[])")
+    call append(SelfAdd(), "    {")
+    call append(SelfAdd(), "")
+    call append(SelfAdd(), "    }")
+    call append(SelfAdd(), "}")
+endfunc
+"}}}
+"{{{ SetTitle_py()
+func SetTitle_py()
+    let s:i = 0
+    call setline(1,        "\#!/usr/bin/env python")
+    call append(SelfAdd(), "\#-*- coding: utf-8 -*-")
+    call append(SelfAdd(), "\#################################################################")
+    call append(SelfAdd(), "\#   Copyright (C) ".strftime("%Y")." Sean Guo. All rights reserved.")
+    call append(SelfAdd(), "\#")
+    call append(SelfAdd(), "\#   > File Name:        < ".expand("%:t")." >")
+    call append(SelfAdd(), "\#   > Author:           < Sean Guo >")
+    call append(SelfAdd(), "\#   > Mail:             < iseanxp+code@gmail.com >")
+    call append(SelfAdd(), "\#   > Created Time:     < ".strftime("%Y/%m/%d")." >")
+    call append(SelfAdd(), "\#   > Description:")
+    call append(SelfAdd(), "\#################################################################")
+    call append(SelfAdd(), "")
+    call append(SelfAdd(), "if __name__ == '__main__':")
+    call append(SelfAdd(), "    pass")
+endfunc
+"}}}
+unlet s:i
 
 " {{{ AutoGroups - language-specific settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -475,139 +638,4 @@ augroup END
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-
-" {{{ Helper functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Delete trailing white space on save, useful for Python and CoffeeScript ;)
-func! DeleteTrailingWS()
-    exe "normal mz"
-    %s/\s\+$//ge
-    exe "normal `z"
-endfunc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
-
-" {{{ NewFile
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" :au[tocmd] [group] {event} {pat} [nested] {cmd}
-" 把 {cmd} 加到 Vim 在匹配 {pat} 模式的文件执行 {event} 事件时自动执行的命令列表。
-" Vim 把 {cmd} 加到已有的自动命令之后, 从而使自动命令的执行顺序与其定义的顺序相同。
-
-"新建.c, .cpp, .h, .sh, .java文件时,执行VIM的autocmd命令
-"这里使用autocmd, 实现新建文件时, 自动添加作者信息至文件头
-autocmd BufNewFile *.sh         exec ":call SetTitle_sh()"
-autocmd BufNewFile *.cpp,*.c    exec ":call SetTitle_c()"
-autocmd BufNewFile *.h          exec ":call SetTitle_h()"
-autocmd BufNewFile *.java       exec ":call SetTitle_java()"
-autocmd BufNewFile *.py         exec ":call SetTitle_py()"
-"新建文件后，自动定位到文件末尾
-autocmd BufNewFile *            normal G
-
-""定义各自的函数SetTitle_xx() ,自动插入文件头
-func SetTitle_sh()
-    call setline(1,           "\#!/bin/bash")
-    call append(line("."),    "\#################################################################")
-    call append(line(".")+1,  "\#   Copyright (C) ".strftime("%Y")." Sean Guo. All rights reserved.")
-    call append(line(".")+2,  "\#")
-    call append(line(".")+3,  "\#   > File Name:        < ".expand("%:t")." >")
-    call append(line(".")+4,  "\#   > Author:           < Sean Guo >")
-    call append(line(".")+5,  "\#   > Mail:             < iseanxp+code@gmail.com >")
-    call append(line(".")+6,  "\#   > Created Time:     < ".strftime("%Y/%m/%d")." >")
-    call append(line(".")+7,  "\#   > Description:")
-    call append(line(".")+8,  "\#################################################################")
-    call append(line(".")+9, "")
-endfunc
-"   :help expand()
-"   expand参数
-"   ----------------------------
-"   %       获取文件名
-"   %:h     获取目录
-"   %:t     获取不含路径的文件名
-"   %:r     比'%'少后缀
-"   %:e     获取后缀
-
-func SetTitle_c()
-    call setline(1,           "/****************************************************************")
-    call append(line("."),    "  Copyright (C) ".strftime("%Y")." Sean Guo. All rights reserved.")
-    call append(line(".")+1,  "")
-    call append(line(".")+2,  "  > File Name:         < ".expand("%:t")." >")
-    call append(line(".")+3,  "  > Author:            < Sean Guo >")
-    call append(line(".")+4,  "  > Mail:              < iseanxp+code@gmail.com >")
-    call append(line(".")+5,  "  > Created Time:      < ".strftime("%Y/%m/%d")." >")
-    call append(line(".")+6,  "  > Description:")
-    call append(line(".")+7,  " ****************************************************************/")
-    call append(line(".")+8,  "")
-
-    if &filetype == 'cpp'
-        call append(line(".")+9,  "#include <iostream>")
-        call append(line(".")+10, "using namespace std;")
-        call append(line(".")+11, "int main(int argc, char* argv[])")
-        call append(line(".")+12, "{")
-        call append(line(".")+13, "")
-        call append(line(".")+14, "    return 0;")
-        call append(line(".")+15, "}")
-    endif
-    if &filetype == 'c'
-        call append(line(".")+9,  "#include <stdio.h>")
-        call append(line(".")+10, "")
-        call append(line(".")+11, "int main(int argc, char* argv[])")
-        call append(line(".")+12, "{")
-        call append(line(".")+13, "")
-        call append(line(".")+14, "    return 0;")
-        call append(line(".")+15, "}")
-    endif
-endfunc
-
-func SetTitle_h()
-    call setline(1,           "/****************************************************************")
-    call append(line("."),    "  Copyright (C) ".strftime("%Y")." Sean Guo. All rights reserved.")
-    call append(line(".")+1,  "")
-    call append(line(".")+2,  "  > File Name:         < ".expand("%:t")." >")
-    call append(line(".")+3,  "  > Author:            < Sean Guo >")
-    call append(line(".")+4,  "  > Mail:              < iseanxp+code@gmail.com >")
-    call append(line(".")+5,  "  > Created Time:      < ".strftime("%Y/%m/%d")." >")
-    call append(line(".")+6,  "  > Description:")
-    call append(line(".")+7,  " ****************************************************************/")
-    call append(line(".")+8,  "")
-    call append(line(".")+9,  "#ifndef __".toupper(expand("%:r"))."_H__")
-    call append(line(".")+10, "#define __".toupper(expand("%:r"))."_H__")
-    call append(line(".")+11, "")
-    call append(line(".")+12, "#endif /* __".toupper(expand("%:r"))."_H__ */")
-endfunc
-
-func SetTitle_java()
-    call setline(1,           "/*-------------------------------------------------------------*")
-    call append(line("."),    "  Copyright (C) ".strftime("%Y")." Sean Guo. All rights reserved.")
-    call append(line(".")+1,  "")
-    call append(line(".")+2,  "  > File Name:         < ".expand("%:t")." >")
-    call append(line(".")+3,  "  > Author:            < Sean Guo >")
-    call append(line(".")+4,  "  > Mail:              < iseanxp+code@gmail.com >")
-    call append(line(".")+5,  "  > Created Time:      < ".strftime("%Y/%m/%d")." >")
-    call append(line(".")+6,  "  > Description:")
-    call append(line(".")+7,  " *--------------------------------------------------------------*/")
-    call append(line(".")+8,  "")
-    call append(line(".")+9,  "public class ".expand("%:r"))
-    call append(line(".")+10, "{")
-    call append(line(".")+11, "    public static void main(String args[])")
-    call append(line(".")+12, "    {")
-    call append(line(".")+13, "")
-    call append(line(".")+14, "    }")
-    call append(line(".")+15, "}")
-endfunc
-
-func SetTitle_py()
-    call setline(1,           "\#! /usr/bin/env python")
-    call append(line("."),    "\#-*- coding: utf-8 -*-")
-    call append(line(".")+1,  "\#################################################################")
-    call append(line(".")+2,  "\#   Copyright (C) ".strftime("%Y")." Sean Guo. All rights reserved.")
-    call append(line(".")+3,  "\#")
-    call append(line(".")+4,  "\#   > File Name:        < ".expand("%:t")." >")
-    call append(line(".")+5,  "\#   > Author:           < Sean Guo >")
-    call append(line(".")+6,  "\#   > Mail:             < iseanxp+code@gmail.com >")
-    call append(line(".")+7,  "\#   > Created Time:     < ".strftime("%Y/%m/%d")." >")
-    call append(line(".")+8,  "\#   > Description:")
-    call append(line(".")+9, "\#################################################################")
-    call append(line(".")+10, "")
-    call append(line(".")+11, "if __name__ == '__main__':")
-    call append(line(".")+12, "    pass")
-endfunc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""}}}
