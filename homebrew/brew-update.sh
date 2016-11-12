@@ -13,7 +13,8 @@ brew="/usr/local/bin/brew"
 
 echo "==> `date +%Y/%m/%d-%H:%M:%S`"
 $brew update
-$brew upgrade --cleanup
+$brew upgrade
+$brew cleanup
 
 $brew cask update
 $brew cask cleanup
