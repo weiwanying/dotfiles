@@ -1,4 +1,4 @@
--- https://github.com/bezhermoso/dotfiles/tree/master/hammerspoon
+-- Reference(https://github.com/bezhermoso/dotfiles/tree/master/hammerspoon)
 
 local window = require "hs.window"
 local hotkey = require "hs.hotkey"
@@ -7,11 +7,10 @@ local geometry = require "hs.geometry"
 local mouse = require "hs.mouse"
 local layout = require 'hs.layout'
 local alert = require 'hs.alert'
+local screen = require 'hs.screen'
 
-local screen_switch_key = '.';
-
-------------- Multiple Screen Focus Switch --------------- {{{
-
+-- {{{ Multiple Screen Focus Switch
+local SwitchScreenKey = '.';
 --One hotkey should just suffice for dual-display setups as it will naturally
 --cycle through both.
 --A second hotkey to reverse the direction of the focus-shift would be handy
@@ -43,7 +42,7 @@ local function focusScreen(sc, moveMouse)
 end
 
 --Bring focus to next display/screen
-hotkey.bind(hyper, screen_switch_key, function ()
+hotkey.bind(hyper, SwitchScreenKey, function ()
     local focused = window.focusedWindow()
     if not focused then return end
     local sc = focused:screen()
@@ -52,7 +51,7 @@ hotkey.bind(hyper, screen_switch_key, function ()
 end)
 
 --Bring focus to previous display/screen
-hotkey.bind(hyperShift, screen_switch_key, function()
+hotkey.bind(hyperShift, SwitchScreenKey, function()
     local focused = window.focusedWindow()
     if not focused then return end
     local sc = focused:screen()
@@ -60,81 +59,68 @@ hotkey.bind(hyperShift, screen_switch_key, function()
     focusScreen(window.focusedWindow():screen():previous(), true)
 end)
 
--- END DISPLAY FOCUS SWITCHING -- }}}
-
-------------- Multiple Screen Layouts --------------- {{{
--- find screen name from (Macbook - System Preferences - Displays - Color - Display profile)
-local screen_macbook    = "Color LCD"
-local screen_u2414h     = "Display with forced RGB mode (EDID override)"
-
---  Format reminder:
---      {"App name", "Window name", "Display Name", "unitrect", "framerect", "fullframerect"},
---      geometry.rect('X','Y','Width','Height')
---      geometry.unitrect(X%,Y%,Width%,Height%)
-local screen_this = screen_macbook
-local layout_internal = {
--- {{{
-    {"AppCleaner",        nil,          screen_macbook, geometry.unitrect(0, 0.5, 0.5, 0.5), nil, nil},
-    {"Notes",             nil,          screen_this, geometry.unitrect(0.5, 0.5, 0.5, 0.5), nil, nil},
-    {"Finder",            nil,          screen_this, geometry.unitrect(0, 0, 0.5, 0.5), nil, nil},
-    {"NeteaseMusic",      nil,          screen_macbook, layout.left50, nil, nil},
-    {"WeChat",            nil,          screen_macbook, layout.left50, nil, nil},
-    {"Dash",              nil,          screen_macbook, layout.left70, nil, nil},
-    {"Dictionary",        nil,          screen_macbook, layout.right50, nil, nil},
-    {"DaisyDisk",         nil,          screen_this,    geometry.unitrect(0, 0.5, 0.5, 0.5), nil, nil},
-    {"Calendar",          nil,          screen_macbook, layout.left50, nil, nil},
-    {"App Store",         nil,          screen_macbook, layout.left75, nil, nil},
-    {"Tweetbot",          nil,          screen_macbook, layout.left50, nil, nil},
-    --{"Evernote",          "Evernote Basic",   screen_this, geometry.unitrect(0.0, 0.0, 0.9, 1), nil, nil},
-    {"Evernote",          "Evernote Premium",   screen_this, geometry.unitrect(0.0, 0.0, 0.9, 1), nil, nil},
-    {"Evernote",          "Colors",     screen_this, geometry.unitrect(0.9, 0, 0.1, 0.4), nil, nil},
-    {"Google Chrome",     nil,          screen_this, layout.maximized, nil, nil},
-    {"MacDown",           nil,          screen_this, geometry.unitrect(0, 0.5, 1, 0.5), nil, nil},
-    {"Ulysses",           nil,          screen_this, layout.right50, nil, nil},
-    {"OmniFocus",         nil,          screen_this, layout.left50, nil, nil},
-    {"Reeder",            nil,          screen_this, layout.maximized, nil, nil},
-    {"Mail",              nil,          screen_this, layout.left75, nil, nil},
-    {"1Password",         nil,          screen_this, layout.left50, nil, nil},
-    {"iTunes",            "iTunes",     screen_macbook, layout.maximized, nil, nil},
-    {"Preview",           nil,          screen_macbook, layout.left75, nil, nil},
-    {"iTerm2",            nil,          screen_this, layout.maximized, nil, nil},
-    {"Messages",          nil,          screen_this, geometry.unitrect(0, 0.3, 0.3, 0.7), nil, nil},
 -- }}}
-}
+-- {{{ Multiple Screen Layouts
 
-local screen_this = screen_u2414h
-local layout_multiple = {
--- {{{
-    {"AppCleaner",        nil,          screen_macbook, geometry.unitrect(0, 0.5, 0.5, 0.5), nil, nil},
-    {"Notes",             nil,          screen_this, geometry.unitrect(0.5, 0.5, 0.5, 0.5), nil, nil},
-    {"Finder",            nil,          screen_this, geometry.unitrect(0, 0, 0.5, 0.5), nil, nil},
-    {"NeteaseMusic",      nil,          screen_macbook, layout.left50, nil, nil},
-    {"WeChat",            nil,          screen_macbook, layout.left50, nil, nil},
-    {"Dash",              nil,          screen_macbook, layout.left70, nil, nil},
-    {"Dictionary",        nil,          screen_macbook, layout.right50, nil, nil},
-    {"DaisyDisk",         nil,          screen_this,    geometry.unitrect(0, 0.5, 0.5, 0.5), nil, nil},
-    {"Calendar",          nil,          screen_macbook, layout.left50, nil, nil},
-    {"App Store",         nil,          screen_macbook, layout.left75, nil, nil},
-    {"Tweetbot",          nil,          screen_macbook, layout.left50, nil, nil},
-    --{"Evernote",          "Evernote Basic",   screen_this, geometry.unitrect(0.0, 0.0, 0.9, 1), nil, nil},
-    {"Evernote",          "Evernote Premium",   screen_this, geometry.unitrect(0.0, 0.0, 0.9, 1), nil, nil},
-    {"Evernote",          "Colors",     screen_this, geometry.unitrect(0.9, 0, 0.1, 0.4), nil, nil},
-    {"Google Chrome",     nil,          screen_this, layout.maximized, nil, nil},
-    {"MacDown",           nil,          screen_this, geometry.unitrect(0, 0.5, 1, 0.5), nil, nil},
-    {"Ulysses",           nil,          screen_this, layout.right50, nil, nil},
-    {"OmniFocus",         nil,          screen_this, layout.left50, nil, nil},
-    {"Reeder",            nil,          screen_this, layout.maximized, nil, nil},
-    {"Mail",              nil,          screen_this, layout.left75, nil, nil},
-    {"1Password",         nil,          screen_this, layout.left50, nil, nil},
-    {"iTunes",            "iTunes",     screen_macbook, layout.maximized, nil, nil},
-    {"Preview",           nil,          screen_macbook, layout.left75, nil, nil},
-    {"iTerm2",            nil,          screen_this, layout.maximized, nil, nil},
-    {"Messages",          nil,          screen_this, geometry.unitrect(0, 0.3, 0.3, 0.7), nil, nil},
+-- {{{ custom layout
+layout.left33 = geometry.rect(0, 0, 0.333, 1)
+layout.left66 = geometry.rect(0, 0, 0.666, 1)
+layout.right33 = geometry.rect(0.666, 0, 0.333, 1)
+layout.right66 = geometry.rect(0.333, 0, 0.666, 1)
+layout.topLeftQuad = geometry.rect(0, 0, 0.5, 0.5)
+layout.topRightQuad = geometry.rect(0.5, 0, 0.5, 0.5)
+layout.bottomLeftQuad = geometry.rect(0, 0.5, 0.5, 0.5)
+layout.bottomRightQuad = geometry.rect(0.5, 0.5, 0.5, 0.5)
+layout.bottom = geometry.rect(0, 0.5, 1, 0.5)
 -- }}}
-}
 
--- Only one screen
-hotkey.bind(hyper, '1', function() layout.apply(layout_internal) alert.show("Macbook Layout") end)
--- Multiple screens
-hotkey.bind(hyper, '2', function() layout.apply(layout_multiple) alert.show("U2414H + Macbook Layout") end)
---}}}
+function generate_layout()
+    local screenlist = screen.allScreens()
+    local count = #screenlist
+
+    local primaryScreenName = screen.primaryScreen():name()
+    -- if only have one screen, minorScreenName == primaryScreenName;
+    local minorScreenName = screen.primaryScreen():next():name()
+
+    local mylayout= {
+    -- {{{
+        --  Format reminder:
+        --      {"App name", "Window name", "Display Name", "unitrect", "framerect", "fullframerect"},
+        --      geometry.rect('X','Y','Width','Height')
+        --      geometry.unitrect(X%,Y%,Width%,Height%)
+        -- primaryScreen
+        {"Finder",            nil,          primaryScreenName, layout.topLeftQuad, nil, nil},
+        {"Notes",             nil,          primaryScreenName, layout.bottomRightQuad, nil, nil},
+        {"DaisyDisk",         nil,          primaryScreenName, layout.bottomRightQuad, nil, nil},
+        {"MacDown",           nil,          primaryScreenName, layout.bottom, nil, nil},
+        {"Messages",          nil,          primaryScreenName, layout.left30, nil, nil},
+        {"OmniFocus",         nil,          primaryScreenName, layout.left50, nil, nil},
+        {"1Password",         nil,          primaryScreenName, layout.left50, nil, nil},
+        {"Mail",              nil,          primaryScreenName, layout.left70, nil, nil},
+        {"Ulysses",           nil,          primaryScreenName, layout.right50, nil, nil},
+        {"iTerm2",            nil,          primaryScreenName, layout.maximized, nil, nil},
+        {"Google Chrome",     nil,          primaryScreenName, layout.maximized, nil, nil},
+        {"Reeder",            nil,          primaryScreenName, layout.maximized, nil, nil},
+        {"Evernote",          nil,          primaryScreenName, geometry(0.0, 0.0, 0.9, 1), nil, nil},
+        {"Evernote",          "Colors",     primaryScreenName, geometry(0.9, 0, 0.1, 0.4), nil, nil},
+        -- minorScreenName
+        {"AppCleaner",        nil,          minorScreenName, layout.bottomLeftQuad, nil, nil},
+        {"Tweetbot",          nil,          minorScreenName, layout.left30, nil, nil},
+        {"NeteaseMusic",      nil,          minorScreenName, layout.left50, nil, nil},
+        {"Calendar",          nil,          minorScreenName, layout.left50, nil, nil},
+        {"Dash",              nil,          minorScreenName, layout.left70, nil, nil},
+        {"App Store",         nil,          minorScreenName, layout.left75, nil, nil},
+        {"Preview",           nil,          minorScreenName, layout.left75, nil, nil},
+        {"Dictionary",        nil,          minorScreenName, layout.right50, nil, nil},
+        {"WeChat",            nil,          minorScreenName, layout.right50, nil, nil},
+        {"iTunes",            "iTunes",     minorScreenName, layout.maximized, nil, nil},
+    -- }}}
+    }
+
+    alert.show("Layout Apply")
+    return mylayout
+end
+
+-- See: http://www.hammerspoon.org/docs/hs.layout.html#apply
+hotkey.bind(hyper, '1', function() layout.apply(generate_layout()) end)
+--  }}}

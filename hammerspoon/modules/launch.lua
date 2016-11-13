@@ -1,11 +1,10 @@
 local hotkey = require 'hs.hotkey'
-local window = require 'hs.window'
 local application = require 'hs.application'
 local itunes = require 'hs.itunes'
 
--- hs.keycodes.map http://www.hammerspoon.org/docs/hs.keycodes.html#map
-------------- Switch to Application ---------------{{{
-local key2App = {
+-- {{{ switch to application
+-- hs.keycodes.map(http://www.hammerspoon.org/docs/hs.keycodes.html#map)
+local key2app = {
     a = 'AppCleaner',
     b = 'Notes',
     c = 'Calendar',
@@ -29,14 +28,13 @@ local key2App = {
     u = 'Ulysses',
     v = 'Parallels Desktop',
     w = 'WeChat',
-    --x = '',
+    x = 'Papers',
     y = 'Messages',
-    z = ''
+    z = 'Sublime Text',
 }
 
-for key, app in pairs(key2App) do
+for key, app in pairs(key2app) do
     hotkey.bind(hyper, key, function()
-        --application.launchOrFocus(app)
         toggle_application(app)
     end)
 end
@@ -44,33 +42,37 @@ end
 -- hammerspoon console
 --hotkey.bind(hyper, ';', hs.openConsole)
 
--- iTerm console
+-- iTerm2 console
 hotkey.bind(hyper, ';', function()
-    toggle_application("iTerm")
+    toggle_application("iTerm2")
 end)
 
--- reload
-hotkey.bind(hyper, 'escape', function() hs.reload() end)
+--hotkey.bind(hyper, "'", function()
+--end)
 
--- iTunes
+-- {{{ iTunes console
 hotkey.bind(hyperShift, 'space', function() hs.itunes.playpause() end)
 hotkey.bind(hyperShift, 'n', function() hs.itunes.next() end)
 hotkey.bind(hyperShift, 'p', function() hs.itunes.previous() end)
+-- }}}
+
+-- reload
+hotkey.bind(hyper, 'escape', function() hs.reload() end)
 
 --}}}
 -- {{{ toggle_application
 -- Toggle an application between being the frontmost app, and being hidden
 function toggle_application(_app)
-    -- finds a running applications
-    local app = application.find(_app)
+    -- Gets a running application, or nil if not found
+    local app = application.get(_app)
 
     if not app then
-        -- application not running, launch app
-        application.launchOrFocus(_app)
+        --application.launchOrFocus(_app)
+        application.open(_app)
         return
     end
 
-    -- application running, toggle hide/unhide
+    -- application is running, toggle hide/unhide
     local mainwin = app:mainWindow()
     if mainwin then
         if true == app:isFrontmost() then
@@ -81,8 +83,7 @@ function toggle_application(_app)
             mainwin:focus()
         end
     else
-        -- no windows, maybe hide
-        if true == app:hide() then
+        if true == app:isHidden() then
             -- focus app
             application.launchOrFocus(_app)
         else
@@ -90,5 +91,4 @@ function toggle_application(_app)
         end
     end
 end
-
 -- }}}

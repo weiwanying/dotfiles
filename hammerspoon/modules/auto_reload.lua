@@ -1,8 +1,8 @@
 local pathwatcher = require "hs.pathwatcher"
 local alert = require "hs.alert"
 
---Straight out of the docs.
---http://www.hammerspoon.org/go/#fancyreload
+-- Straight out of the docs.
+-- http://www.hammerspoon.org/go/#fancyreload
 local function reloadConfig(files)
     doReload = false
     for _, file in pairs(files) do
@@ -16,4 +16,4 @@ local function reloadConfig(files)
 end
 
 pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig):start()
-alert.show("Hammerspoon Config Loaded")
+alert.show("Hammerspoon Config Reloaded")
