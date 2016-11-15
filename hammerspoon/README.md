@@ -1,42 +1,42 @@
 [Hammerspoon](http://www.hammerspoon.org/)
 ====
-
 ## hotkey settings - modules/hotkey.lua
 
 ###`hyper` = `ctrl` + `cmd`
 ###`hyperShift` = `ctrl` + `cmd` + `Shift`
 
-## Focus Application - modules/launch.lua
+## Toggle Application - modules/launch.lua
 
 | Key | Description |
 |-----|-------------|
-| `hyper`+`a` | Toggle AppCleaner |
-| `hyper`+`b` | Toggle Notes |
-| `hyper`+`c` | Toggle Calendar |
-| `hyper`+`d` | (System hotkey) Define word |
-| `hyper`+`e` | Toggle Evernote |
-| `hyper`+`f` | Toggle Finder |
-| `hyper`+`g` | Toggle Mail |
-| `hyper`+`h` | Toggle Dash |
-| `hyper`+`i` | Toggle iTunes |
-| `hyper`+`j` | Toggle Google Chrome |
-| `hyper`+`k` | Toggle Preview |
-| `hyper`+`l` | Toggle Dictionary |
-| `hyper`+`m` | Toggle MacDown |
-| `hyper`+`n` | Toggle NeteaseMusic |
-| `hyper`+`o` | Toggle OmniToggle |
-| `hyper`+`p` | Toggle 1Password |
-| `hyper`+`q` | |
-| `hyper`+`r` | Toggle Reeder |
-| `hyper`+`s` | Toggle System Preferences |
-| `hyper`+`t` | Toggle Tweetbot |
-| `hyper`+`u` | Toggle Ulysses |
-| `hyper`+`v` | Toggle QQ |
-| `hyper`+`w` | Toggle WeChat |
-| `hyper`+`x` | |
-| `hyper`+`y` | |
-| `hyper`+`z` | |
-| `hyper`+`;` | Toggle iTerm |
+| `hyper`+`a` | AppCleaner |
+| `hyper`+`b` | Notes |
+| `hyper`+`c` | Calendar |
+| `hyper`+`d` | (system hotkey) Define word |
+| `hyper`+`e` | Evernote |
+| `hyper`+`f` | Finder |
+| `hyper`+`g` | Mail |
+| `hyper`+`h` | Dash |
+| `hyper`+`i` | iTunes |
+| `hyper`+`j` | Google Chrome |
+| `hyper`+`k` | Preview |
+| `hyper`+`l` | Dictionary |
+| `hyper`+`m` | MacDown |
+| `hyper`+`n` | NeteaseMusic |
+| `hyper`+`o` | OmniFocus |
+| `hyper`+`p` | 1Password |
+| `hyper`+`q` | App Store |
+| `hyper`+`r` | Reeder |
+| `hyper`+`s` | System Preferences |
+| `hyper`+`t` | Tweetbot |
+| `hyper`+`u` | Ulysses |
+| `hyper`+`v` | Parallels Desktop |
+| `hyper`+`w` | WeChat |
+| `hyper`+`x` | Papers |
+| `hyper`+`y` | Messages |
+| `hyper`+`z` | Sublime Text |
+| `hyper`+`;` | iTerm |
+| `hyper`+`'` |  |
 | `hyper`+`ESC` | Reload Hammerspoon Config |
 
 ### auto reload - modules/auto_reload.lua
