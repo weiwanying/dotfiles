@@ -1,5 +1,8 @@
 [Hammerspoon](http://www.hammerspoon.org/)
 ====
+
+[Mac神器hammerspoon](http://seanxp.com/2016/mac-hammerspoon/)
+
 ## hotkey settings - modules/hotkey.lua
 
 ###`hyper` = `ctrl` + `cmd`
