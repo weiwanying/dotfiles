@@ -44,7 +44,7 @@ end
 
 -- iTerm2 console
 hotkey.bind(hyper, ';', function()
-    toggle_application("iTerm2")
+    toggle_application("iTerm")
 end)
 
 --hotkey.bind(hyper, "'", function()
@@ -63,8 +63,8 @@ hotkey.bind(hyper, 'escape', function() hs.reload() end)
 -- {{{ toggle_application
 -- Toggle an application between being the frontmost app, and being hidden
 function toggle_application(_app)
-    -- Gets a running application, or nil if not found
-    local app = application.get(_app)
+    -- Finds running applications
+    local app = application.find(_app)
 
     if not app then
         --application.launchOrFocus(_app)
@@ -83,12 +83,7 @@ function toggle_application(_app)
             mainwin:focus()
         end
     else
-        if true == app:isHidden() then
-            -- focus app
-            application.launchOrFocus(_app)
-        else
-            -- nothing to do
-        end
+        application.launchOrFocus(_app)
     end
 end
 -- }}}
