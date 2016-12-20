@@ -112,7 +112,7 @@ function generate_layout()
         {"App Store",         nil,          minorScreenName, layout.left75, nil, nil},
         {"Preview",           nil,          minorScreenName, layout.left75, nil, nil},
         {"Dictionary",        nil,          minorScreenName, layout.right50, nil, nil},
-        {"WeChat",            nil,          minorScreenName, layout.right50, nil, nil},
+        {"WeChat",            nil,          minorScreenName, layout.left50, nil, nil},
         {"iTunes",            "iTunes",     minorScreenName, layout.maximized, nil, nil},
     -- }}}
     }
