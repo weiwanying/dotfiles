@@ -6,7 +6,7 @@
 #	> Author:           < Sean Guo >
 #	> Mail:             < iseanxp+code@gmail.com >
 #	> Created Time:     < 2016/03/28 >
-#	> Last Changed:
+#	> Last Changed:     < 2017/01/05 >
 #	> Description:
 #################################################################
 
@@ -23,7 +23,7 @@ $brew install gawk
 $brew install gdb
 $brew install git
 $brew install gnu-sed
-$brew install htop-osx
+$brew install htop
 $brew install nmap
 $brew install node
 $brew install p7zip
