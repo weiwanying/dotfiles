@@ -15,6 +15,4 @@ echo "===> `date +%Y/%m/%d-%H:%M:%S`"
 $brew update
 $brew upgrade
 $brew cleanup
-
-$brew cask update
 $brew cask cleanup

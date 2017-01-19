@@ -3,7 +3,6 @@ aria2
 bash
 binutils
 boost
-cmake
 coreutils
 cowsay
 cscope
@@ -20,7 +19,6 @@ gnu-indent
 gnu-sed
 gnu-tar
 gnu-which
-gnutls
 homebrew/dupes/gpatch
 graphviz
 homebrew/dupes/grep
@@ -53,5 +51,6 @@ tree
 vim
 watch
 wdiff
+weechat
 wget
 zsh

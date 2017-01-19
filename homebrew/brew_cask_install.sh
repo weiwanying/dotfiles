@@ -6,7 +6,7 @@
 #	> Author:           < Sean Guo >
 #	> Mail:             < iseanxp+code@gmail.com >
 #	> Created Time:     < 2016/03/28 >
-#	> Last Changed:
+#	> Last Changed:     < 2017/01/19 >
 #	> Description:
 #################################################################
 
@@ -24,8 +24,6 @@ $brew cask install java
 $brew cask install keka
 $brew cask install little-snitch
 $brew cask install macdown
-$brew cask install macid
-$brew cask install onyx
 $brew cask install shadowsocksx
 $brew cask install skim
 $brew cask install the-unarchiver

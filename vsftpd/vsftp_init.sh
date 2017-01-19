@@ -35,16 +35,16 @@ fi
 #{{{ 3. vsftpd virtual user
 cd /etc/vsftpd
 # 生成虚拟用户文件
-echo "seanxp" > virtusers
-echo "sean@359#XP" >> virtusers
+echo "jack" > virtusers
+echo "jackpassword" >> virtusers
 echo "db_load -T -t hash -f /etc/vsftpd/virtusers /etc/vsftpd/virtusers.db" > generate_db.sh
 chmod u+x generate_db.sh
 sh generate_db.sh
 mkdir -p /etc/vsftpd/vconf
-# 虚拟用户seanxp的ftp配置
-echo "local_root=/var/vsftpd/ftp" > /etc/vsftpd/vconf/seanxp
-echo "write_enable=YES" >> /etc/vsftpd/vconf/seanxp
-echo "anon_umask=022" >> /etc/vsftpd/vconf/seanxp
+# 虚拟用户jack的ftp配置
+echo "local_root=/var/vsftpd/ftp" > /etc/vsftpd/vconf/jack
+echo "write_enable=YES" >> /etc/vsftpd/vconf/jack
+echo "anon_umask=022" >> /etc/vsftpd/vconf/jack
 #}}}
 #{{{ 4. /etc/pam.d/vsftpd
 cp /etc/pam.d/vsftpd /etc/pam.d/vsftpd.bak

@@ -7,10 +7,9 @@
 #               故往往配置~/.bash_profile读取~/.bashrc文件,
 #               而个人配置均存放在bashrc文件中。
 #
-#	Author	: 	SeanXP	
+#	Author	: 	Sean Guo
 #	Email 	:	iseanxp+code@gmail.com
 #####################################################################
-
 #{{{ alias
 if [ `uname` = "Darwin" ];then
     alias ls='ls -G' 			# BSD Unix, [-G] - Enable colorized output.
@@ -24,7 +23,6 @@ alias egrep='egrep --color'
 alias fgrep='fgrep --color'
 alias vi='vim'
 #}}}
-
 #{{{ prompt
 #eg: PS1="\[ \e[0,32,40mhelloworld\]"
 #'\e'声明了转义序列的开始,'['开始定义颜色,后面的'0'定义了默认字体宽度
@@ -40,27 +38,27 @@ export CLICOLOR=1
 #每两个字母为一组，表示前景颜色和背景颜色
 #共有11组颜色设置，分别为
 #directory											|	ex
-#symbolic link										|	fx	
+#symbolic link										|	fx
 #socket												|	ax
 #pipe												|	dx
 #executable											|	cx
 #block special										|	eg
-#character special									|	ed		
+#character special									|	ed
 #executable with setuid bit set						|	ab
 #executable with setgid bit set						|	ag
 #directory writable to others, with sticky bit		|	ac
 #directory writable to others, without sticky bit	|	ad
 
-# color 1: executable -> green  
+# color 1: executable -> green
 #export LSCOLORS=exfxaxdxcxegedabagacad
 
 # color 2: executable -> red
 export LSCOLORS=bxfxcxdxbxegedabagacad
 
 # color
-# a->[black][黑色]		b->[red][红色]		c->[green][绿色] 
-# d->[brown][棕色]		e->[blue][蓝色]		f->[magenta][品红]	
-# g->[cyan][青色]		h->[gray][浅灰]	
+# a->[black][黑色]		b->[red][红色]		c->[green][绿色]
+# d->[brown][棕色]		e->[blue][蓝色]		f->[magenta][品红]
+# g->[cyan][青色]		h->[gray][浅灰]
 # A,B,C,D,E,F,G,H [对应颜色的粗体]
 # x->[系统默认颜色]
 #}}}

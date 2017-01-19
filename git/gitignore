@@ -19,11 +19,13 @@ a.out
 # vim swap file
 *.swp
 # Archives
-*.7z
-*.dmg
-*.gz
-*.iso
-*.jar
-*.rar
-*.tar
 *.zip
+*.rar
+*.dmg
+*.iso
+*.tar
+*.7z
+*.gz
+*.bz2
+*.xz
+*.jar
