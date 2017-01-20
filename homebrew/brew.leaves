@@ -12,6 +12,7 @@ homebrew/dupes/diffutils
 dos2unix
 homebrew/dupes/ed
 enca
+ffmpeg
 gawk
 gdb
 git
@@ -53,4 +54,5 @@ watch
 wdiff
 weechat
 wget
+youtube-dl
 zsh
