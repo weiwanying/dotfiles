@@ -1,13 +1,13 @@
 #!/bin/bash
 #################################################################
 #   Copyright (C) 2016 Sean Guo. All rights reserved.
-#														  
-#	> File Name:        < install-oh-my-zsh.sh >
-#	> Author:           < Sean Guo >		
-#	> Mail:             < iseanxp+code@gmail.com >		
-#	> Created Time:     < 2016/03/01 >
-#	> Last Changed: 
-#	> Description:
+#
+#    > File Name:        < install-oh-my-zsh.sh >
+#    > Author:           < Sean Guo >
+#    > Mail:             < iseanxp+code@gmail.com >
+#    > Created Time:     < 2016/03/01 >
+#    > Last Changed:
+#    > Description:
 #################################################################
 
 #http://ohmyz.sh/
