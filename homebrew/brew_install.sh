@@ -6,7 +6,7 @@
 #	> Author:           < Sean Guo >
 #	> Mail:             < iseanxp+code@gmail.com >
 #	> Created Time:     < 2016/03/28 >
-#	> Last Changed:     < 2017/01/05 >
+#	> Last Changed:     < 2017/01/21 >
 #	> Description:
 #################################################################
 
@@ -15,36 +15,43 @@ brew="/usr/local/bin/brew"
 $brew install ack
 $brew install aria2
 $brew install bash
+$brew install binutils
 $brew install cmake
 $brew install cscope
 $brew install ctags
 $brew install curl
-$brew install gawk
+$brew install ffmpeg
 $brew install gdb
 $brew install git
-$brew install gnu-sed
+$brew install graphviz
 $brew install htop
+$brew install httpie
+$brew install iproute2mac
+$brew install libmagic
 $brew install nmap
 $brew install node
 $brew install p7zip
+$brew install pandoc
 $brew install perl
 $brew install python
+$brew install python3
 $brew install ruby
 $brew install ssh-copy-id
 $brew install shadowsocks-libev
 $brew install tmux
 $brew install tree
+$brew install weechat
+$brew install youtube-dl
 $brew install zsh
 
 #{{{ Install the GNU Command Line Tools
 # https://www.topbug.net/blog/2013/04/14/install-and-use-gnu-command-line-tools-in-mac-os-x/
-$brew tap home$brew/dupes
+$brew tap homebrew/dupes
 $brew install coreutils
 $brew install diffutils
 $brew install gawk
 $brew install gnutls
 $brew install gzip
-$brew install watch
 $brew install wdiff --with-gettext
 $brew install wget
 $brew install openssh
