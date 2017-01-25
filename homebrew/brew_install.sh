@@ -24,6 +24,7 @@ $brew install ffmpeg
 $brew install gdb
 $brew install git
 $brew install graphviz
+$brew install gpg2
 $brew install htop
 $brew install httpie
 $brew install iproute2mac

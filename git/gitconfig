@@ -1,6 +1,7 @@
 [user]
     name = SeanXP
     email = iseanxp+code@gmail.com
+	signingkey = 5F09337F
 [core]
     excludesfile = ~/.gitignore
     quotepath = false
@@ -11,3 +12,5 @@
     default = simple
 [merge]
     tool = vimdiff
+[gpg]
+	program = /usr/local/bin/gpg
