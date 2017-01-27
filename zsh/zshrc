@@ -120,6 +120,9 @@ if [ $OS = "mac" ];then
     export PYTHONSTARTUP
 #else
 fi
+
+# GnuPG - seanxp <iseanxp@gmail.com>
+export GPGKEY="0x5655CA935F09337F"
 # }}}
 
 # {{{ personal aliases
