@@ -15,6 +15,13 @@ for dotfile in `find . -name 'aria?*' -exec basename {} \;`
 do
   target="$HOME/.aria2/$dotfile"
 
-  # not softlink, copy for more change.
+  if [ -f "$target" ];then
+    mv "$target" "$target.old"
+  fi
+
+  # not soft link, copy for more configure.
   cp `pwd`/$dotfile "$target"
 done
+
+touch "$HOME/.aria2/aria2.session"
+touch "$HOME/.aria2/aria2.log"
