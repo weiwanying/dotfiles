@@ -1,0 +1,1 @@
+05 02 * * * /usr/bin/yum -y update >> ~/yum-update.log 2>&1
