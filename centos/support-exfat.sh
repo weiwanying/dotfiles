@@ -6,7 +6,7 @@
 #   > Author:           < Sean Guo >
 #   > Mail:             < iseanxp+code@gmail.com >
 #   > Created Time:     < 2017/02/17 >
-#   > Description:      CentOS 7 support exfat
+#   > Description:      CentOS support exfat
 #                       http://www.itdadao.com/articles/c15a458668p0.html
 #################################################################
 
@@ -17,8 +17,8 @@ yum -y install epel-release
 
 # 2. Nux Dextop，Nux.Ro RPMs for general desktop use
 # A desktop and multimedia oriented RPM repository for EL. It contains a lot of graphical programs such as Ardour, but also text based apps line Cone.
-#rpm -Uvh http://li.nux.ro/download/nux/dextop/el6/x86_64/nux-dextop-release-0-2.el6.nux.noarch.rpm
-rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
+uname -a | grep 'el6' && rpm -Uvh http://li.nux.ro/download/nux/dextop/el6/x86_64/nux-dextop-release-0-2.el6.nux.noarch.rpm
+uname -a | grep 'el7' && rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
 # disable Nux Dextop
 sed -i 's/enabled=1/enabled=0/g' /etc/yum.repos.d/nux-dextop.repo
 
