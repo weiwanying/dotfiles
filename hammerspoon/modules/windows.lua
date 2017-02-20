@@ -62,7 +62,7 @@ end
 --hotkey.bind(hyperShift, ']', function() window.focusedWindow():moveToUnit(layout.right70) end)
 
 -- show window hints
-hotkey.bind(hyper, '/', function()
+hotkey.bind(hyperShift, '/', function()
     hints.windowHints()
 end)
 
@@ -80,7 +80,7 @@ end)
 --grid.MARGINY = 0
 
 -- interact with the window grid
-hotkey.bind(hyper, ',', grid.show)
+hotkey.bind(hyper, '/', grid.show)
 hotkey.bind(hyper, 'Left', grid.pushWindowLeft)
 hotkey.bind(hyper, 'Right', grid.pushWindowRight)
 hotkey.bind(hyper, 'Up', grid.pushWindowUp)

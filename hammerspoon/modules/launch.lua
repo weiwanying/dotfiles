@@ -23,14 +23,14 @@ local key2app = {
     p = '1Password',
     q = 'App Store',
     r = 'Reeder',
-    s = 'System Preferences',
+    s = 'Sublime Text',
     t = 'Tweetbot',
     u = 'Ulysses',
     v = 'Parallels Desktop',
     w = 'mpv',
-    x = 'Papers',
+    x = 'MATLAB',
     y = 'Messages',
-    z = 'Sublime Text',
+    z = '',
 }
 
 for key, app in pairs(key2app) do
@@ -40,15 +40,16 @@ for key, app in pairs(key2app) do
 end
 
 -- hammerspoon console
---hotkey.bind(hyper, ';', hs.openConsole)
+hotkey.bind(hyper, "\'", hs.openConsole)
 
 -- iTerm2 console
 hotkey.bind(hyper, ';', function()
     toggle_application("iTerm")
 end)
 
---hotkey.bind(hyper, "'", function()
---end)
+hotkey.bind(hyper, ',', function()
+    toggle_application("System Preferences")
+end)
 
 -- {{{ iTunes console
 hotkey.bind(hyperShift, 'space', function() hs.itunes.playpause() end)
