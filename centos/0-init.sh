@@ -36,3 +36,6 @@ hostname $SERVERNAME
 echo "$SERVERNAME" > /etc/hostname
 sed -i "s/localhost.localdomain/$SERVERNAME/g" /etc/hosts
 #}}}
+#{{{ time zone
+timedatectl set-timezone Asia/Shanghai
+#}}}
