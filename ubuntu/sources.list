@@ -1,0 +1,78 @@
+# https://help.ubuntu.com/community/Repositories/CommandLine
+# http://wiki.ubuntu.org.cn/%E6%BA%90%E5%88%97%E8%A1%A8
+# Ubuntu 16.04, Xenial Xerus
+# * main，官方支持的自由软件。
+# * restricted，官方支持的非完全自由的软件。
+# * universe，社区维护的自由软件。
+# * multiverse，非自由软件。
+
+#{{{ Tsinghux edu
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
+deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
+# deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse
+deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse
+deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse
+deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse
+deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse
+# deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-proposed main restricted universe multiverse
+#}}}
+#{{{ USTC edu
+deb http://debian.ustc.edu.cn/ubuntu/ xenial main multiverse restricted universe
+deb http://debian.ustc.edu.cn/ubuntu/ xenial-security main multiverse restricted universe
+deb http://debian.ustc.edu.cn/ubuntu/ xenial-updates main multiverse restricted universe
+deb http://debian.ustc.edu.cn/ubuntu/ xenial-backports main multiverse restricted universe
+#deb http://debian.ustc.edu.cn/ubuntu/ xenial-proposed main multiverse restricted universe
+deb-src http://debian.ustc.edu.cn/ubuntu/ xenial main multiverse restricted universe
+deb-src http://debian.ustc.edu.cn/ubuntu/ xenial-security main multiverse restricted universe
+deb-src http://debian.ustc.edu.cn/ubuntu/ xenial-backports main multiverse restricted universe
+deb-src http://debian.ustc.edu.cn/ubuntu/ xenial-updates main multiverse restricted universe
+#deb-src http://debian.ustc.edu.cn/ubuntu/ xenial-proposed main multiverse restricted universe
+#}}}
+##{{{ 163
+#deb http://mirrors.163.com/ubuntu/ xenial main restricted universe multiverse
+#deb http://mirrors.163.com/ubuntu/ xenial-security main restricted universe multiverse
+#deb http://mirrors.163.com/ubuntu/ xenial-updates main restricted universe multiverse
+#deb http://mirrors.163.com/ubuntu/ xenial-backports main restricted universe multiverse
+#deb http://mirrors.163.com/ubuntu/ xenial-proposed main restricted universe multiverse
+#deb-src http://mirrors.163.com/ubuntu/ xenial main restricted universe multiverse
+#deb-src http://mirrors.163.com/ubuntu/ xenial-security main restricted universe multiverse
+#deb-src http://mirrors.163.com/ubuntu/ xenial-updates main restricted universe multiverse
+#deb-src http://mirrors.163.com/ubuntu/ xenial-proposed main restricted universe multiverse
+#deb-src http://mirrors.163.com/ubuntu/ xenial-backports main restricted universe multiverse
+##}}}
+##{{{ CN archive ubuntu
+#deb http://cn.archive.ubuntu.com/ubuntu/ xenial main restricted
+#deb-src http://cn.archive.ubuntu.com/ubuntu/ xenial main restricted
+#
+### Major bug fix updates produced after the final release of the distribution.
+#deb http://cn.archive.ubuntu.com/ubuntu/ xenial-updates main restricted
+#deb-src http://cn.archive.ubuntu.com/ubuntu/ xenial-updates main restricted
+#
+### N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
+### team. Also, please note that software in universe WILL NOT receive any
+### review or updates from the Ubuntu security team.
+#deb http://cn.archive.ubuntu.com/ubuntu/ xenial universe
+#deb-src http://cn.archive.ubuntu.com/ubuntu/ xenial universe
+#deb http://cn.archive.ubuntu.com/ubuntu/ xenial-updates universe
+#deb-src http://cn.archive.ubuntu.com/ubuntu/ xenial-updates universe
+#
+### N.B. software from this repository is ENTIRELY UNSUPPORTED by the Ubuntu
+### team, and may not be under a free licence. Please satisfy yourself as to
+### your rights to use the software. Also, please note that software in
+### multiverse WILL NOT receive any review or updates from the Ubuntu
+### security team.
+#deb http://cn.archive.ubuntu.com/ubuntu/ xenial multiverse
+#deb-src http://cn.archive.ubuntu.com/ubuntu/ xenial multiverse
+#deb http://cn.archive.ubuntu.com/ubuntu/ xenial-updates multiverse
+#deb-src http://cn.archive.ubuntu.com/ubuntu/ xenial-updates multiverse
+#
+### N.B. software from this repository may not have been tested as
+### extensively as that contained in the main release, although it includes
+### newer versions of some applications which may provide useful features.
+### Also, please note that software in backports WILL NOT receive any review
+### or updates from the Ubuntu security team.
+#deb http://cn.archive.ubuntu.com/ubuntu/ xenial-backports main restricted universe multiverse
+#deb-src http://cn.archive.ubuntu.com/ubuntu/ xenial-backports main restricted universe multiverse
+##}}}
